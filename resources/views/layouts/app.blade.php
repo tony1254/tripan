@@ -9,15 +9,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+
+    <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    @yield('css')
+
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
+	'csrfToken' => csrf_token(),
+]); ?>
     </script>
 </head>
 <body>
@@ -82,6 +84,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        @yield('scripts')
 </body>
 </html>
