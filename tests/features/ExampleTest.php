@@ -3,7 +3,7 @@
 // use Illuminate\Foundation\Testing\WithoutMiddleware;
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ExampleTest extends FeatureTestCase {
+class ExampleTest extends FeaturesTestCase {
 
 	/**
 	 * A basic functional test example.
@@ -11,19 +11,19 @@ class ExampleTest extends FeatureTestCase {
 	 * @return void
 	 */
 	public function testBasicExample() {
-		$name = 'Luis Garcia';
-		$email = 'Luis@Garcia.com';
+		// $name = 'Luis Garcia';
+		// $email = 'Luis@Garcia.com';
 
-		$user = factory(App\User::class)->create([
-			'name' => $name,
-			'email' => $email,
-		]);
+		// $user = factory(App\User::class)->create([
+		// 	'name' => $name,
+		// 	'email' => $email,
+		// ]);
 
-		$this->actingAs($user, 'api');
+		// $this->actingAs($user, 'api');
 
-		$this->visit('/api/user')
-			->see($name);
-		$this->visit('/')
-			->see('Laravel');
+		// $this->visit('/api/user')
+		// 	->see($name);
+		// $this->visit('/')
+		// 	->see('Laravel');
 	}
 }

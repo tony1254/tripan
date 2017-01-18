@@ -4,36 +4,51 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class LoginController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+class LoginController extends Controller {
+	/*
+		    |--------------------------------------------------------------------------
+		    | Login Controller
+		    |--------------------------------------------------------------------------
+		    |
+		    | This controller handles authenticating users for the application and
+		    | redirecting them to your home screen. The controller uses a trait
+		    | to conveniently provide its functionality to your applications.
+		    |
+	*/
 
-    use AuthenticatesUsers;
+	use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+	/**
+	 * Where to redirect users after login.
+	 *
+	 * @var string
+	 */
+	protected $redirectTo = '/home';
+	/**
+	 * [sendLoginResponse description]
+	 * @param  Request $request [description]
+	 * @return redirectPath      [description]
+	 */
+	protected function sendLoginResponse(Request $request) {
+		$request->session()->regenerate();
+		$this->clearLoginAttempts($request);
+		$user = $this->authenticated($request, $this->guard()->user());
+		Session::put('permission', ['variable de sessiones']);
+		Session::put('menu', itemsMenu());
+		return $user
+		?: redirect()->intended($this->redirectPath());
+	}
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'logout']);
-    }
+		$this->middleware('guest', ['except' => 'logout']);
+	}
 }

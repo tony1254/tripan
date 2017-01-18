@@ -5,9 +5,21 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">@lang('validation.attributes.register')</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+
+                 {{-- {!! Form::open(['action'=>'HomeController@index']) !!} --}}
+                {!! Form::open() !!}
+
+                    {!! Field::text('name') !!}
+                    {!! Field::email('email') !!}
+                    {!! Field::password('password') !!}
+                    {!! Field::password('password_confirmation') !!}
+
+                    {!! Form::submit(trans('validation.attributes.save'), ['class' => 'btn btn-primary']) !!}
+
+                    {!! Form::close() !!}
+                {{--     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -67,7 +79,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

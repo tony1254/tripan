@@ -11,10 +11,14 @@
 |
  */
 
-Route::get('/', function () {
-	return view('welcome');
-});
-
 Auth::routes();
+Route::get('/', [
+	'uses' => 'HomeController@raiz',
+	'as' => 'raiz']);
+Route::get('/home', [
+	'uses' => 'HomeController@index',
+	'as' => 'home']);
+
 Route::resource('file', 'FileController');
-Route::get('/home', 'HomeController@index');
+
+Route::get('menu-test', 'MenuController@index');
