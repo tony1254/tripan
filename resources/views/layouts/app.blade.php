@@ -10,8 +10,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{-- Style Bootstrap --}}
     <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/ripples.min.css') }}" rel="stylesheet">
+    {{-- Materialize --}}
+    {{-- <link href="{{ asset('/bower_components/materialize/dist/css/materialize.min.css') }}" rel="stylesheet"> --}}
+
     @yield('css')
 
 
@@ -72,7 +78,13 @@
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    {{-- <script src="/bower_components/materialize/dist/js/materialize.min.js"></script> --}}
 <script type="text/javascript">
+$.material.init();
+$('document').ready({
+
+});
 //funcion Para Cerrar Session por Post Con palabra Reservada Cerrar Sesion
 //Utulizando funcion de etiqueta de html contiene
  $("a:contains('{{trans('validation.attributes.logout')}}')").click(function() {
