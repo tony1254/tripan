@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -13,9 +14,9 @@
                         {!! Field::email('email') !!}
                         {!! Field::password('password') !!}
                         {!! Field::checkbox('remember') !!}
-                        {!! Form::submit(trans('validation.attributes.login'), ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit(trans('validation.attributes.login'), ['class' => 'white-text btn btn-primary']) !!}
 
-                        <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                        <a class="transparent blue-text  btn-link" href="{{ url('/password/reset') }}">
                                     @lang('validation.attributes.password_forget')
                                 </a>
                         {!! Form::close() !!}

@@ -19,9 +19,11 @@
                     Subir Archivos
                 </div>
                 <div class="panel-body">
-                    {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
-                    <div class="dz-message" style="height:500;">
-                        Arrastra tus arhivos aqui
+                    {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => ' cyan lighten-5  dropzone well']) !!}
+                    <div class="dz-message " style="height:200;">
+                       <h4>
+                            @lang('validation.attributes.dropzone')
+                       </h4>
                     </div>
                     <div class="dropzone-previews">
 
@@ -30,7 +32,7 @@
 <dir class="row">
 <div class="col-md-3 col-md-offset-9">
 
-                    <button type="submit" class="btn btn-success btn-lg" id="submit">
+                    <button type="submit" class="waves-effect waves-light btn  green green-text text-lighten-5" id="submit">
                     <span class="glyphicon glyphicon-floppy-disk"></span>
                     Grabar</button>
 </div>
@@ -46,8 +48,9 @@
     {!! Html::script('js/dropzone.js'); !!}
 
     <script>
-    $('document').ready(
+    $(document).ready(
         function() {
+             console.log( "document loaded file script" );
 //alert("file uploaded");
 }
         );

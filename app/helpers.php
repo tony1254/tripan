@@ -11,7 +11,12 @@ function itemsMenu() {
 			'submenu' =>
 			[
 				'about' => [],
-				'company' => [],
+				'company' => ['submenu' =>
+					[
+						'about' => [],
+						'company' => [],
+					],
+				],
 			],
 		],
 		'file' => ['utl' => '/fiel'],
@@ -19,7 +24,7 @@ function itemsMenu() {
 
 			'submenu' =>
 			[
-				'logout' => ['title' => trans('validation.attributes.logout'), 'url' => '#'],
+				'logout' => ['title' => trans('validation.attributes.logout') . chr(15) . 's', 'url' => '#'],
 				'company' => [],
 			],
 

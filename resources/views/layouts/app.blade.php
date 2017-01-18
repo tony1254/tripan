@@ -10,16 +10,28 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      {{-- <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
     {{-- Style Bootstrap --}}
     <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/bower_components/google-material/material-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/ripples.min.css') }}" rel="stylesheet">
     {{-- Materialize --}}
-    {{-- <link href="{{ asset('/bower_components/materialize/dist/css/materialize.min.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('/bower_components/materialize/dist/css/materialize.min.css') }}" rel="stylesheet">
 
     @yield('css')
 
+<style type="text/css">
+    .form-group{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    label.control-label{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+</style>
 
     <!-- Scripts -->
     <script>
@@ -30,20 +42,29 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar  green">
+
             <div class="container">
                 <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+ <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    {{-- <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" data-activates="mobile-demo" >
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+                    </button> --}}
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+<style>
+    #a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+</style>
+                    <a id="a" class="navbar-brand brand-logo " href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -66,7 +87,19 @@
                     </ul>
                 </div>
             </div>
+            <div class="nav-wrapper" >
+    <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+    </ul>
+</div>
         </nav>
+
+
+
+
 
         @yield('content')
         {!!Form::open(['id'=>'logout-form','url'=>'/logout'])!!}
@@ -79,12 +112,19 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
-    {{-- <script src="/bower_components/materialize/dist/js/materialize.min.js"></script> --}}
+
+    <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
 <script type="text/javascript">
 $.material.init();
-$('document').ready({
+ $( document ).ready(function() {
+   $(".button-collapse").sideNav();
+        console.log( "document loaded" );
+    });
 
-});
+    $( window ).on( "load", function() {
+        console.log( "window loaded" );
+    });
+
 //funcion Para Cerrar Session por Post Con palabra Reservada Cerrar Sesion
 //Utulizando funcion de etiqueta de html contiene
  $("a:contains('{{trans('validation.attributes.logout')}}')").click(function() {

@@ -150,6 +150,7 @@ return [
 		'password_forget' => '¿Olvidaste tu contraseña?',
 		'save' => 'Guardar',
 		'register' => 'Registro',
+		'dropzone' => 'Haz click o asrrastra tus arhivos aqui',
 	],
 
 ];
