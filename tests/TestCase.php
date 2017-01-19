@@ -72,9 +72,9 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		 *	$this->actingAs($this->defaultUser());
 		 **sirve para Logearce con un usuario especifico
 		 *	$this->specificUser($name, $email, $password);*/
-		$name = 'tony Garcia';
-		$email = 'tony@tony.com';
-		$password = 'tonytony';
+		$name = 'Luis Garcia';
+		$email = 'Luis@Luis.com';
+		$password = 'LuisLuis';
 		$this->specificUser($name, $email, $password);
 
 		$this->visit(route('login'))
@@ -82,7 +82,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 			->type($password, 'password')
 			->press(trans('validation.attributes.login'))
 		;
-		$this->see($name);
+		return $this->see($name);
 
 	}
 }

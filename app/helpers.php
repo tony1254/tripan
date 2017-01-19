@@ -1,33 +1,26 @@
 <?php
-
+use App\Menu;
+use App\Permission;
 function currentUser() {
 	return auth()->user();
 }
 function itemsMenu() {
-	return $items = [
-		'home' => ['url' => '/home'],
-		'about' => ['title' => 'Who we are', 'url' => 'about-us', 'class' => 'uno'],
-		'contact-us' => [
-			'submenu' =>
-			[
-				'about' => [],
-				'company' => ['submenu' =>
-					[
-						'about' => [],
-						'company' => [],
-					],
-				],
-			],
-		],
-		'file' => ['utl' => '/fiel'],
-		'user' => ['title' => currentUser()->name,
+	return $items = Permission::where('IdUser', currentUser()->id)->get();
+}
+function findPermission($idMenu) {
 
-			'submenu' =>
-			[
-				'logout' => ['title' => trans('validation.attributes.logout') . chr(15) . 's', 'url' => '#'],
-				'company' => [],
-			],
+	$value = Session::get('menu');
+	// $permission = $permissions->where('idMenu', 2)->first()->state;
+	$value = $value->where('idMenu', $idMenu)->first();
+	return (isset($value)) ? $value->state : false;
+}
+function findMenuName($idMenu) {
+	$value = Session::get('menuName');
+	return $value->find($idMenu)->name;
 
-		],
-	];
+}
+function createSessionVars() {
+	Session::put('permission', ['variable de sessiones']);
+	Session::put('menu', itemsMenu());
+	Session::put('menuName', Menu::all());
 }

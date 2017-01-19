@@ -37,8 +37,7 @@ class LoginController extends Controller {
 		$request->session()->regenerate();
 		$this->clearLoginAttempts($request);
 		$user = $this->authenticated($request, $this->guard()->user());
-		Session::put('permission', ['variable de sessiones']);
-		Session::put('menu', itemsMenu());
+		createSessionVars();
 		return $user
 		?: redirect()->intended($this->redirectPath());
 	}

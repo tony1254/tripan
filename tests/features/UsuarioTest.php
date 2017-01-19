@@ -2,6 +2,7 @@
 /**
  *
  */
+
 class UsuarioTest extends FeaturesTestCase {
 	public function testRegisterNewUser() {
 		$this->visit(route('home'));
@@ -24,6 +25,19 @@ class UsuarioTest extends FeaturesTestCase {
 		// $this->see('obligatorios');
 		$this->seeInDatabase('users', ['name' => $name]);
 		// $this->see('variable de session');
+
+	}
+	public function testCreatePermission() {
+		$this->defaultLogin()
+			->visit(route('permission.index'))
+			->see('crear');
+
+	}
+	public function testNewLogin() {
+		$this->visit(route('login'))
+			->see(trans('validation.attributes.login'));
+		// Se Logea
+		$this->defaultLogin();
 
 	}
 }

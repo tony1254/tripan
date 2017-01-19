@@ -3,6 +3,10 @@
  *
  */
 class ShowHomeTest extends FeaturesTestCase {
+	/**
+	 * [testSeeSesionVar description]
+	 * @return [type] [description]
+	 */
 	public function testSeeSesionVar() {
 		$this->visit(route('home'));
 		// $this->actingAs($this->defaultUser());

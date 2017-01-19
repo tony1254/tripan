@@ -20,10 +20,15 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
+
 		return view('home');
 	}
 	public function raiz() {
 		//Session::put('permission', [1, 2, 3, 4, 5]);
-		return view('welcome');
+		// $permission = findMenu(2);
+		// exit(var_dump(findMenuName(1)->name));
+		// $permissions = Permission::where('IdUser', currentUser()->id)->get();
+		// $permission = $permissions->where('idMenu', 2)->first()->state;
+		return view('welcome'); //->with('permissions', $permission);
 	}
 }

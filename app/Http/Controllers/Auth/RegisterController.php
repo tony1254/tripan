@@ -8,7 +8,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Validator;
 
 class RegisterController extends Controller {
@@ -52,7 +51,7 @@ class RegisterController extends Controller {
 		event(new Registered($user = $this->create($request->all())));
 
 		$this->guard()->login($user);
-		Session::put('menu', itemsMenu());
+		createSessionVars();
 
 		return $this->registered($request, $user)
 		?: redirect($this->redirectPath());
