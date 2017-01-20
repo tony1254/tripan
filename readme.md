@@ -1,5 +1,6 @@
 # Laravel PHP Framework
 
+[ ![Codeship Status for tony1254/tripan](https://app.codeship.com/projects/6bdc8610-c0cd-0134-0f88-3264d70e0757/status?branch=master)](https://app.codeship.com/projects/197107)
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
