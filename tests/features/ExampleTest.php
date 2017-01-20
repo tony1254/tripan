@@ -11,18 +11,19 @@ class ExampleTest extends FeaturesTestCase {
 	 * @return void
 	 */
 	public function testBasicExample() {
-		// $name = 'Luis Garcia';
-		// $email = 'Luis@Garcia.com';
+		$name = 'Luis Garcia';
+		$email = 'Luis@Garcia.com';
 
-		// $user = factory(App\User::class)->create([
-		// 	'name' => $name,
-		// 	'email' => $email,
-		// ]);
+		$user = factory(App\User::class)->create([
+			'name' => $name,
+			'email' => $email,
+		]);
+		// $this->actingAs($this->defaultUser());//inicio sesion Default
+		$this->actingAs($user); //inicio sesion especific
 
-		// $this->actingAs($user, 'api');
-
-		// $this->visit('/api/user')
-		// 	->see($name);
+		$this->visit('/api/user')
+		// ->see($this->defaultUser->name);
+			->see($name);
 		// $this->visit('/')
 		// 	->see('Laravel');
 	}

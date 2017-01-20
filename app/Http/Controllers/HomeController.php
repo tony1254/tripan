@@ -19,6 +19,15 @@ class HomeController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+	public function controlPanel() {
+
+		return view('auth.controlPanel.index');
+	}
+	/**
+	 * Show the application dashboard.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 	public function index() {
 
 		return view('home');

@@ -28,16 +28,11 @@ class UsuarioTest extends FeaturesTestCase {
 
 	}
 	public function testCreatePermission() {
-		$this->defaultLogin()
-			->visit(route('permission.index'))
-			->see('crear');
+		$this->actingAs($this->defaultUser()); //inicio sesion Default
+
+		$this->visit(route('permission.index'))
+			->see(trans('buttons.create'));
 
 	}
-	public function testNewLogin() {
-		$this->visit(route('login'))
-			->see(trans('validation.attributes.login'));
-		// Se Logea
-		$this->defaultLogin();
 
-	}
 }

@@ -7,7 +7,7 @@ class ShowHomeTest extends FeaturesTestCase {
 	 * [testSeeSesionVar description]
 	 * @return [type] [description]
 	 */
-	public function testSeeSesionVar() {
+	/*public function testSeeSesionVar() {
 		$this->visit(route('home'));
 		// $this->actingAs($this->defaultUser());
 		$name = 'tony Garcia';
@@ -22,17 +22,17 @@ class ShowHomeTest extends FeaturesTestCase {
 		// $this->see($this->defaultUser()->name);
 		$this->see('variable de session');
 		// $this->see(trans('validation.attributes.login'));
-	}
-	public function testSeeInMenu() {
+	}*/
+	public function testSeeInMenuNameUser() {
 		//Revisar si Aparece Login al estar Como invitado(Guest)
 		$this->visit(url('/'))
 			->see(trans('validation.attributes.login'));
 		// Se Logea
-		$this->defaultLogin();
+		$this->actingAs($this->defaultUser());
 
 		// Revisa si Muestra el Menu con su nombre
 		$this->visit(url('/home'))
-			->see($this->specificUser->name);
+			->see($this->defaultUser->name);
 
 	}
 	public function testdefaultLogin() {
@@ -46,6 +46,7 @@ class ShowHomeTest extends FeaturesTestCase {
 		$name = 'tony Garcia';
 		$email = 'tony@tony.com';
 		$password = 'tonytony';
+
 		$this->specificUser($name, $email, $password);
 
 		$this->visit(route('login'))
