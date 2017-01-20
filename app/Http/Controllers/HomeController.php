@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu;
+use App\Permission;
+use App\User;
+
 // use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -20,7 +24,15 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function controlPanel() {
+		$permiso = new Permission([
+			'name' => 'carro',
+			'state' => false,
+			'menu_id' => 1,
+		]);
+		auth()->user()->permissions()->save($permiso);
+		Menu::find(3)->permissions()->save($permiso);
 
+		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
 		return view('auth.controlPanel.index');
 	}
 	/**

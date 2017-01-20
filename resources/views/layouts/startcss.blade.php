@@ -39,9 +39,9 @@ a.button-collapse:hover,
 a.button-collapse {
     color: white;
     text-decoration: none;
-    position: absolute;
-    top: 0px;
-    left: 0px;
+/*     position: absolute;
+top: 0px;
+left: 0px; */
 }
 
 .side-nav a:hover,
@@ -69,8 +69,39 @@ a.button-collapse {
     justify-content: center;
     align-content: center;
     flex-direction: column;
-}
 
+}
+@media only screen and (max-width: 767px) {
+    #a {
+        position: absolute;
+    }
+    }
+@media only screen and (max-width: 992px) {
+    #a {
+        /*position: absolute;*/
+    }
+  nav .brand-logo {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  nav .brand-logo.left, nav .brand-logo.right {
+    padding: 0;
+    -webkit-transform: none;
+            transform: none;
+  }
+  nav .brand-logo.left {
+    left: 0.5rem;
+  }
+  nav .brand-logo.right {
+    right: 0.5rem;
+    left: auto;
+  }
+}
+.navbar .navbar-nav>li>a,
+.navbar .navbar-brand {
+    height: 60px;
+}
 nav {
     height: 60px;
 }

@@ -5,13 +5,13 @@ function currentUser() {
 	return auth()->user();
 }
 function itemsMenu() {
-	return $items = Permission::where('IdUser', currentUser()->id)->get();
+	return $items = Permission::where('user_id', currentUser()->id)->get();
 }
 function findPermission($idMenu) {
 
 	$value = Session::get('menu');
 	// $permission = $permissions->where('idMenu', 2)->first()->state;
-	$value = $value->where('idMenu', $idMenu)->first();
+	$value = $value->where('menu_id', $idMenu)->first();
 	return (isset($value)) ? $value->state : false;
 }
 function findMenuName($idMenu) {

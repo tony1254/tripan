@@ -36,14 +36,14 @@ class DatabaseSeeder extends Seeder {
 		$menu->name = "Inportar";
 		$menu->save();
 		Permission::create([
-			'idUser' => 2,
+			'user_id' => 2,
 			'name' => Menu::find(1)->name,
-			'idMenu' => 1,
+			'menu_id' => 1,
 			'state' => false,
 		]);
 		Permission::create([
-			'idUser' => 2,
-			'idMenu' => 2,
+			'user_id' => 2,
+			'menu_id' => 2,
 			'name' => Menu::find(2)->name,
 			'state' => true,
 		]);

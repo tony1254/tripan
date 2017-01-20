@@ -14,8 +14,14 @@ class CreatePermissionsTable extends Migration {
 		Schema::create('permissions', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('idUser')->index('idUser');
-			$table->integer('idMenu')->index('idMenu');
+
+			$table->integer('user_id')->unsigned(); //->index('idUser');
+			$table->foreign('user_id')->references('id')->on('users');
+
+			$table->integer('menu_id')->unsigned(); //->index('idUser');
+			$table->foreign('menu_id')->references('id')->on('menus');
+
+			// $table->integer('idMenu')->index('idMenu');
 			$table->boolean('state');
 			$table->timestamps();
 		});
