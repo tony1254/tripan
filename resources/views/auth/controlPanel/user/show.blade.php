@@ -58,10 +58,10 @@
                         <td>{{findMenuName( $permission->menu_id) }}</td>
                         <td>
                             <!-- Switch -->
-                            <div class="switch">
+                            <div class="switch" id="permission_{{ $permission->id }}">
                                 <label>
                                     Off
-                                    <input
+                                    <input name="permission_{{ $permission->id }}"
                                     {{ (auth()->user()->id!=$permission->user_id)?:'disabled ' }}
                                     type="checkbox" {{ ( $permission->state==0)?:'checked' }} onclick=" $('#carga').load('{{ route('permission.edit',$permission->id)}}'); ">
                                     <span class="lever"></span> On

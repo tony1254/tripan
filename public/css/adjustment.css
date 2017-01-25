@@ -20,11 +20,21 @@ label.control-label {
     padding: 0px;
 
 }
+
 .titleName {
  vertical-align: top;
     
     padding: 0px;
-    max-height: 35px;
+    max-height: 20px;
+overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: pre;*/
+}
+ul.side-nav li a div.titleName {
+ vertical-align: top;
+    
+    padding: 0px;
+    max-height: 40px;
 overflow: hidden;
     text-overflow: ellipsis;
     /*white-space: pre;*/
@@ -33,7 +43,7 @@ overflow: hidden;
     padding-top: 0;
     padding-bottom: 0;
     /*   Cambia el Ancho del atributo*/
-    max-width: 200.484px;
+    width: 200.484px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
@@ -83,7 +93,9 @@ left: 0px; */
     #a {
         position: absolute;
     }
+
     }
+
 @media only screen and (max-width: 992px) {
     #a {
         /*position: absolute;*/

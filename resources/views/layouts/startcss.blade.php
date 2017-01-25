@@ -14,6 +14,5 @@
 <link href="{{ asset('/css/adjustment.css') }}" rel="stylesheet">
 
 <style type="text/css">
-
 </style>
 @endsection

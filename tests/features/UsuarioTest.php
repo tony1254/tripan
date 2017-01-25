@@ -2,6 +2,7 @@
 /**
  *
  */
+use App\Permission;
 use App\User;
 
 class UsuarioTest extends FeaturesTestCase {
@@ -84,6 +85,25 @@ class UsuarioTest extends FeaturesTestCase {
 		//then
 		$this->visit(route('user.show', 2))
 			->see(trans('validation.attributes.permission'));
+
+	}
+	public function testChangePermissionInUser() {
+		//inicio sesion Default
+		$this->actingAs($this->defaultUser());
+
+		$permissionTest = Permission::where('user_id', 2)->first();
+		//then
+		$this->visit(route('user.show', 2))
+			->see('permission_4');
+/*
+->click('permission_' . $permissionTest->id);
+// permission_4
+$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 0]);
+
+$this->seePageIs(route('user.show', 2))
+->click('permission_' . $permissionTest->id);
+
+$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 1]);*/
 
 	}
 
