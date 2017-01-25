@@ -6,7 +6,19 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FileController extends Controller {
-
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		$this->middleware('auth');
+	}
+	/**
+	 * [store description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
 	public function store(Request $request) {
 
 		$path = public_path() . '/uploads/';

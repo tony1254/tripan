@@ -35,26 +35,26 @@ class ShowHomeTest extends FeaturesTestCase {
 			->see($this->defaultUser->name);
 
 	}
-	public function testdefaultLogin() {
+	// public function testdefaultLogin() {
 
-		$this->visit(route('home'));
-		/**
-		 **sirve para Logearce con un usuario Fake
-		 *	$this->actingAs($this->defaultUser());
-		 **sirve para Logearce con un usuario especifico
-		 *	$this->specificUser($name, $email, $password);*/
-		$name = 'tony Garcia';
-		$email = 'tony@tony.com';
-		$password = 'tonytony';
+	// 	$this->visit(route('home'));
+	// 	/**
+	// 	 **sirve para Logearce con un usuario Fake
+	// 	 *	$this->actingAs($this->defaultUser());
+	// 	 **sirve para Logearce con un usuario especifico
+	// 	 *	$this->specificUser($name, $email, $password);*/
+	// 	$name = 'tony Garcia';
+	// 	$email = 'tony@tony.com';
+	// 	$password = 'tonytony';
 
-		$this->specificUser($name, $email, $password);
+	// 	$this->specificUser($name, $email, $password);
 
-		$this->visit(route('login'))
-			->type($email, 'email')
-			->type($password, 'password')
-			->press(trans('validation.attributes.login'))
-		;
-		$this->see($name);
+	// 	$this->visit(route('login'))
+	// 		->type($email, 'email')
+	// 		->type($password, 'password')
+	// 		->press(trans('validation.attributes.login'))
+	// 	;
+	// 	$this->see($name);
 
-	}
+	// }
 }

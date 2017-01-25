@@ -13,8 +13,10 @@ return [
 		    |
 	*/
 
-	'create' => '<span class="glyphicon glyphicon-plus"></span> Crear',
+	'success' => 'Cambio realizado con exito',
 	'next' => 'Siguiente &raquo;',
 	'back' => '<i class="material-icons">keyboard_arrow_left</i> Regresar',
+	'enable' => 'Activado',
+	'disable' => 'Desactivado',
 
 ];

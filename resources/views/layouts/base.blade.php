@@ -10,6 +10,7 @@
     <div id="app">
 		@yield('navBar')
 
+{!! Alert::render() !!}
         @yield('content')
         {!!Form::open(['id'=>'logout-form','url'=>'/logout'])!!}
         {!!Form::close()!!}

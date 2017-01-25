@@ -1,8 +1,6 @@
 <?php
 
 use App\Menu;
-use App\Permission;
-use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
@@ -13,19 +11,9 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run() {
 		// $this->call(UsersTableSeeder::class);
-		User::create([
-			'name' => 'Administrador',
-			'email' => 'admin@admin.com',
-			'password' => bcrypt('admin'),
-		]);
-		User::create([
-			'name' => 'tony',
-			'email' => 'tony2@tony.com',
-			'password' => bcrypt('tonytony'),
-		]);
 		$menu = new Menu;
 		$menu->subId = 0;
-		$menu->name = "Usuario";
+		$menu->name = "Usuarios";
 		$menu->save();
 		$menu = new Menu;
 		$menu->subId = 1;
@@ -35,18 +23,27 @@ class DatabaseSeeder extends Seeder {
 		$menu->subId = 0;
 		$menu->name = "Inportar";
 		$menu->save();
-		Permission::create([
-			'user_id' => 2,
-			'name' => Menu::find(1)->name,
-			'menu_id' => 1,
-			'state' => false,
+
+		DB::table('users')->insert([
+			[
+				'name' => 'Slave',
+				'email' => 'slave@slave.com',
+				'password' => bcrypt('slavesalve'),
+			], [
+				'name' => 'Administrador',
+				'email' => 'admin@admin.com',
+				'password' => bcrypt('adminadmin'),
+			], [
+				'name' => 'tony',
+				'email' => 'tony2@tony.com',
+				'password' => bcrypt('tonytony'),
+			],
 		]);
-		Permission::create([
-			'user_id' => 2,
-			'menu_id' => 2,
-			'name' => Menu::find(2)->name,
-			'state' => true,
-		]);
+
+		createPermissions(1);
+		addPermissions(1, 2);
+		addPermissions(1, 3);
+		emptyPermissions(1);
 
 	}
 }

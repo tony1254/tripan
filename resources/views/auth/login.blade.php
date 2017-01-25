@@ -14,7 +14,7 @@
                         {!! Field::email('email') !!}
                         {!! Field::password('password') !!}
                         {!! Field::checkbox('remember') !!}
-                        {!! Form::submit(trans('validation.attributes.login'), ['class' => 'white-text btn btn-primary']) !!}
+                        {!! Form::button(trans('validation.attributes.login'), ['class' => 'btn teal white-text waves-effect white-text btn btn-primary', 'type'=>'sumbit']) !!}
 
                         <a class="transparent blue-text  btn-link" href="{{ url('/password/reset') }}">
                                     @lang('validation.attributes.password_forget')

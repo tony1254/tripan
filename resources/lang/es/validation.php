@@ -151,6 +151,9 @@ return [
 		'save' => 'Guardar',
 		'register' => 'Registro',
 		'dropzone' => 'Haz click o asrrastra tus arhivos aqui',
+		'user' => 'Usuario',
+		'permission' => 'Permiso',
+
 	],
 
 ];

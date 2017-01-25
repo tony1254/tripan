@@ -52,7 +52,19 @@ class PermissionController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		//
+		// Codigo modificaicon permiso
+		$permission = Permission::find($id);
+		if ($permission->state) {
+			$permission->state = false;
+			$state = trans('alerts.disable');
+		} else {
+			$permission->state = true;
+			$state = trans('alerts.enable');
+		}
+		$permission->save();
+		return view('auth.controlPanel.permission.edit')->with('msj', findMenuName($permission->menu_id) . ' ' . $state);
+
+		return ('funciona' . findMenuName($permission->menu_id));
 	}
 
 	/**
@@ -63,7 +75,16 @@ class PermissionController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		//
+		// Codigo modificaicon permiso
+		$permission = Permission::find($id);
+		if ($permission->state) {
+			$permission->state = false;
+		} else {
+			$permission->state = true;
+		}
+		$permission->save();
+		return ('funciona');
+		// return redirect()->back();
 	}
 
 	/**

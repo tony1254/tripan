@@ -41,9 +41,12 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-
+		// return ($this->prueba());
 		return view('home');
 	}
+	// public function prueba($value = '') {
+	// 	return "hola";
+	// }
 	public function raiz() {
 		//Session::put('permission', [1, 2, 3, 4, 5]);
 		// $permission = findMenu(2);

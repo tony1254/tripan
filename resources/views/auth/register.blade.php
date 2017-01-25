@@ -16,7 +16,7 @@
                     {!! Field::password('password') !!}
                     {!! Field::password('password_confirmation') !!}
 
-                    {!! Form::submit(trans('validation.attributes.save'), ['class' => 'btn btn-primary']) !!}
+                    {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit']) !!}
 
                     {!! Form::close() !!}
                 {{--     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">

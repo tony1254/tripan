@@ -29,7 +29,7 @@ class RegisterController extends Controller {
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/home';
+	protected $redirectTo = '/user';
 
 	/**
 	 * Create a new controller instance.
@@ -37,7 +37,7 @@ class RegisterController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('guest');
+		$this->middleware('auth');
 	}
 	/**
 	 * Handle a registration request for the application.
@@ -50,8 +50,8 @@ class RegisterController extends Controller {
 
 		event(new Registered($user = $this->create($request->all())));
 
-		$this->guard()->login($user);
-		createSessionVars();
+		// $this->guard()->login($user);
+		// createSessionVars();
 
 		return $this->registered($request, $user)
 		?: redirect($this->redirectPath());
@@ -77,10 +77,14 @@ class RegisterController extends Controller {
 	 * @return User
 	 */
 	protected function create(array $data) {
-		return User::create([
+		$newUser = User::create([
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
+		createPermissions($newUser->id);
+
+		//addPermissions(1, $newUser->id);
+		return $newUser;
 	}
 }
