@@ -53,6 +53,15 @@ class FileController extends Controller {
 	}
 	public function validacion($users) {
 		$errores = [];
+
+/*		foreach ($users[0] as $keys => $value) {
+DB::beginTransaction();
+DB::rollback();
+DB::comit()
+https://laravel.com/docs/master/validation#manually-creating-validators
+echo "<p> 'Modelo::where('name',$keys)->first()'</p>";
+}
+exit(var_dump("nada"));*/
 		foreach ($users as $user) {
 
 			$name = $user->name;

@@ -37,12 +37,17 @@ class DatabaseSeeder extends Seeder {
 				'name' => 'tony',
 				'email' => 'tony2@tony.com',
 				'password' => bcrypt('tonytony'),
+			], [
+				'name' => 'Tripan Guatemala',
+				'email' => 'tripan@tripan.com',
+				'password' => bcrypt('tripan'),
 			],
 		]);
 
 		createPermissions(1);
 		addPermissions(1, 2);
 		addPermissions(1, 3);
+		addPermissions(1, 4);
 		emptyPermissions(1);
 
 	}

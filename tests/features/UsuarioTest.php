@@ -40,6 +40,10 @@ class UsuarioTest extends FeaturesTestCase {
 			->see(trans('buttons.create'));
 
 	}
+	/**
+	 * lee el que aparescan los usuarios en la
+	 * @return [type] [description]
+	 */
 	public function testSeeIndexUser() {
 		//inicio sesion Default
 		$this->actingAs($this->defaultUser());
