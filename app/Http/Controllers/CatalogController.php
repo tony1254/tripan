@@ -6,14 +6,45 @@ use App\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PermissionController extends Controller {
+class CatalogController extends Controller {
+
+	public function Catalogo($value) {
+
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		dd(DB::table('users')->find(1));
+
+		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
+	}
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function indexTable($table) {
+
+// Codeigo para operar En tabla plantaS
+		$var = 'c,';
+		$query = '
+			SELECT `id`, a, `b`, ' . $var . '@h,@J
+			FROM `prueba`
+			WHERE 1;
+			';
+		$reglas = ['()**'];
+		$valor = ['power()'];
+		$query = str_replace($reglas, $valor, $query);
+		// dd($query);
+		$var = 'set @h:=1;
+			set @J:=3;';
+		addParameters($var); //funcino agrega parametros separados por ";"
+		$a = DB::select($query);
+		dd($a);
+		dd(DB::table($table)->find(1));
+
 		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
 	}
 

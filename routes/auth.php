@@ -16,3 +16,6 @@ Route::resource('user', 'UserController');
 Route::resource('file', 'FileController');
 Route::resource('permission', 'PermissionController');
 Route::get('menu-test', 'MenuController@index');
+
+Route::get('catalog/{table}', ['uses' => 'CatalogController@indexTable', 'as' => 'catalogo.tabla.index']);
+Route::get('catalog/', ['uses' => 'CatalogController@index', 'as' => 'catalogo.index']);
