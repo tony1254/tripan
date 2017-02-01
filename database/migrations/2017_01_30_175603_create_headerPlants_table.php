@@ -15,10 +15,10 @@ class CreateHeaderPlantsTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->String('description');
-
-			$table->foreign('catalog_id')->references('id')->on('catalogs');
+			// $table->foreign('catalog_id')->references('id')->on('catalogs');
 			// $table->integer('idMenu')->index('idMenu');
-			$table->boolean('state');
+			$table->boolean('catlog_type');
+			$table->boolean('state')->default(1);
 			$table->timestamps();
 		});
 	}

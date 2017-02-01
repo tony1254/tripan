@@ -34,7 +34,7 @@ light-green darken-2
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">@lang('validation.attributes.login')</a></li>
-                <li><a href="{{ url('/register') }}">Register</a></li>
+                {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}
                 @else @yield('menu') {{-- {!! Menu::make(Session::get('menu'), 'nav navbar-nav') !!} --}} @endif
             </ul>
         </div>

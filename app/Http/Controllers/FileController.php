@@ -52,7 +52,7 @@ class FileController extends Controller {
 		return view('upload.form');
 	}
 	public function validacion($users) {
-		$errores = [];
+		$errores = 0;
 
 /*		foreach ($users[0] as $keys => $value) {
 DB::beginTransaction();
@@ -62,20 +62,24 @@ https://laravel.com/docs/master/validation#manually-creating-validators
 echo "<p> 'Modelo::where('name',$keys)->first()'</p>";
 }
 exit(var_dump("nada"));*/
-		foreach ($users as $user) {
 
+		foreach ($users as $user) {
+			$var = $user->var;
+			dd($var);
 			$name = $user->name;
 			$email = $user->email;
 			$password = $user->password;
-
-			$error = ($password == null) ? 'password es obligatorio' : false;
-			($error) ? array_push($errores, $error) : false;
-			$error = (1 == User::where('email', $email)->count()) ? 'Ya exite usuario' : false;
-			($error) ? array_push($errores, $error) : false;
-
+			if ($password == null) {
+				\Alert::danger('password es obligatorio');
+				$errores++;
+			}
+			if (1 == User::where('email', $email)->count()) {
+				\Alert::danger('Ya exite usuario');
+				$errores++;
+			}
 		}
 
-		(count($errores) > 0) ? exit(view('upload.form')->with('error', $errores)) : false;
+		($errores > 0) ? exit(view('upload.form')) : \Alert::success(trans('alerts.success'));
 		return false;
 	}
 }

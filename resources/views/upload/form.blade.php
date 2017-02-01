@@ -2,6 +2,12 @@
 @section('css')
     <link href="{{ asset('/css/dropzone.css') }}" rel="stylesheet">
 @endsection
+
+@section('formOpen')
+{!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => ' cyan lighten-5  dropzone well']) !!}
+
+@endsection
+@section('afterUpload'){{ asset('/file/create')}}@endsection
 @section('content')
 @if(isset($error))
 <div class="alert alert-danger">
@@ -19,7 +25,7 @@
                     Subir Archivos
                 </div>
                 <div class="panel-body">
-                    {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => ' cyan lighten-5  dropzone well']) !!}
+                    @yield('formOpen')
                     <div class="dz-message " style="height:200;">
                        <h4>
                             @lang('validation.attributes.dropzone')
@@ -84,7 +90,7 @@
 
 
                     myDropzone.removeFile(file);
-                    window.location.href = "{{ asset('/file/create')}}";
+                    window.location.href = "@yield('afterUpload')";
                     });
                 });
 

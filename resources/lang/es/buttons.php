@@ -13,6 +13,7 @@ return [
 		    |
 	*/
 
+	'generate' => '<span class="glyphicon glyphicon-plus"></span> Generar',
 	'create' => '<span class="glyphicon glyphicon-plus"></span> Crear',
 	'next' => 'Siguiente &raquo;',
 	'back' => '<i class="material-icons">keyboard_arrow_left</i> Regresar',

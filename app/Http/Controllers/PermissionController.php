@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Permission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller {
 	/**
@@ -13,7 +12,7 @@ class PermissionController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		dd(DB::table('users')->find(1));
+		// dd(DB::table('users')->find(1));
 		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
 	}
 
