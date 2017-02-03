@@ -48,10 +48,17 @@ overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
 }
-
+a:hover,
+.btn-group-sm>.btn, .btn-sm:hover,
 a.button-collapse:hover,
 .side-nav a {
-    text-decoration: none;
+    text-decoration: initial;
+}
+.btn{
+    margin: 0px;
+}
+.row{
+    margin-bottom: 0px;
 }
 
 a.button-collapse {

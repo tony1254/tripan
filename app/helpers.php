@@ -1,5 +1,4 @@
 <?php
-use App\HeaderPlants;
 use App\Menu;
 use App\Permission;
 use Illuminate\Http\Request;
@@ -157,24 +156,33 @@ function rows($value) {
 		echo "<tr><td>&nbsp</td></tr>";
 	}
 }
-function cols($value) {
+function cols($value, $colspan = '0') {
 	for ($i = 0; $i < $value; $i++) {
 
-		echo "<td>&nbsp</td>";
+		echo "<td colspan='$colspan'>&nbsp</td>";
 	}
 }
-function matriz($ids) {
+function isCalidad($value = '') {
 	$calidades = [0, 4, 6, 8, 10, 12, 14];
+	return array_search($value, $calidades);
+}
+function isAltura($value = '') {
 	$alturas = [0, 5, 7, 9, 11, 13, 15];
+	return array_search($value, $alturas);
+}
+function isSeccion($value = '') {
+	return ((isCalidad($value)) || (isAltura($value))) ? true : false;
+}
+function matriz($ids) {
 	$y = 30;
 	$nul;
 	$headersPlants = DB::select('select * from headerPlants
 where
-id=1
+0
 ' . $ids);
-	$headersPlants2 = HeaderPlants::all();
-	$headersPlants3 = DB::table('headerPlants')->select('*')->get();
-	$headersPlants4 = HeaderPlants::where('id', 1)->orWhere([['id', '=', '2'], ['id', '=', '2']])->get();
+	// $headersPlants2 = HeaderPlants::all();
+	// $headersPlants3 = DB::table('headerPlants')->select('*')->get();
+	// $headersPlants4 = HeaderPlants::where('id', 1)->orWhere([['id', '=', '2'], ['id', '=', '2']])->get();
 	// $x = count($headersPlants1);
 	// dd($calidades->getName());
 	// $calidad = array_search(4, $calidades);
@@ -191,27 +199,23 @@ id=1
 			echo "<td class='$color numero' rowspan='2'>No.</td>";
 			foreach ($headersPlants as $key => $xx) {
 				$retVal = $xx->name;
-				//si es seccion
-				$calidad = array_search($xx->id, $calidades);
+
 				//si es parte seccion
-				$altura = array_search($xx->id, $alturas);
-				if ($altura) {
+
+				if (isAltura($xx->id)) {
 					// dd($altura, $calidad, $calidades, $alturas, array_search(1, $calidades));
 					continue;
-				} else if ($calidad) {
+				} else if (isCalidad($xx->id)) {
 					$sections++;
-					echo "<td class='$color' colspan='2'>Seccion ";
-					echo (($sections == 4)) ? ($sections - 1) . "-2" : "";
-					echo (($sections == 6)) ? ($sections - 2) . "-2" : "";
-					echo (($sections == 5)) ? ($sections - 1) : "";
-					echo (($sections == 4) || ($sections == 5) || ($sections == 6)) ? "" : $sections;
+					echo "<td class='$color' colspan='5'>Seccion ";
+					echo seccionName($sections);
 					// echo $sections;
 					echo "</td>";
 
 				} else {
 					echo (($xx->catlog_type)) ?
 					"<td class='$color strech' rowspan='2'>" . $retVal . "</td>" :
-					"<td class='$color'rowspan='2'>" . $retVal . "</td>";
+					"<td class='$color'rowspan='2' colspan='" . (1 + $xx->number + $xx->decimal) . "'>" . $retVal . "</td>";
 					// echo "<td class='$color' rowspan='2'>" . $retVal . "</td>";
 				}
 
@@ -221,12 +225,12 @@ id=1
 			echo "<tr>";
 			for ($i = 0; $i < $sections; $i++) {
 				echo "<td class='strech $color'>cal</td>";
-				echo "<td class='$color'>altura</td>";
+				echo "<td class='$color' colspan='4'>altura</td>";
 			}
 			echo "</tr>";
 			echo "<tr>";
 			echo "</tr>";
-
+//Forma cuadro fijo
 		} else {
 			echo "<tr>";
 			$retVal = $yy;
@@ -237,10 +241,19 @@ id=1
 
 				$retVal = "&nbsp";
 				$color = "";
+				if ($xx->catlog_type) {
+					echo "<td class='$color strech'>" . "&nbsp" . "</td>";
 
-				echo ($xx->catlog_type) ?
-				"<td class='$color strech'>" . "&nbsp" . "</td>" :
-				"<td class='$color'>" . $retVal . "</td>";
+				} else {
+					for ($i = 0; $i < $xx->number; $i++) {
+						echo "<td class='$color'>" . $retVal . "</td>";
+					}
+					echo "<td class='$color strech text-center'><b>.</b></td>";
+					for ($i = 0; $i < $xx->decimal; $i++) {
+						echo "<td class='$color'>" . $retVal . "</td>";
+
+					}
+				}
 
 			}
 			echo "</tr>";
@@ -248,7 +261,14 @@ id=1
 		}
 	}
 }
-
+function seccionName($value = '') {
+	$salida = "";
+	$salida .= (($value == 4)) ? ($value - 1) . "-2" : "";
+	$salida .= (($value == 6)) ? ($value - 2) . "-2" : "";
+	$salida .= (($value == 5)) ? ($value - 1) : "";
+	$salida .= (($value == 4) || ($value == 5) || ($value == 6)) ? "" : $value;
+	return $salida;
+}
 function arrayOrs(Request $request) {
 
 	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));

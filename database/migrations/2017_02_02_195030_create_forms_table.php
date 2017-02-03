@@ -4,24 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHeaderPlantsTable extends Migration {
+class CreateFormsTable extends Migration {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('headerPlants', function (Blueprint $table) {
+		Schema::create('forms', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->String('description');
-			// $table->foreign('catalog_id')->references('id')->on('catalogs');
-			// $table->integer('idMenu')->index('idMenu');
-			$table->integer('number');
-			$table->integer('decimal');
-			$table->boolean('catlog_type');
+			$table->string('description');
+			$table->string('headers');
 			$table->boolean('state')->default(1);
 			$table->timestamps();
+
 		});
 	}
 
@@ -31,6 +28,6 @@ class CreateHeaderPlantsTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists('headerPlants');
+		Schema::dropIfExists('forms');
 	}
 }
