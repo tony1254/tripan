@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row"    >
             <div class="panel panel-primary">
-                <div class="panel-heading">
+                <div class="panel-heading indigo accent-2">
                     Subir Archivos
                 </div>
                 <div class="panel-body">
@@ -44,6 +44,7 @@
 </div>
 </dir>
                     {!! Form::close() !!}
+@yield('suggestedFormat')
                 </div>
             </div>
         </div>

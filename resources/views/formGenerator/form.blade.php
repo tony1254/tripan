@@ -229,7 +229,7 @@ table {
                 </div>
             </div>
             <div class="row">
-                @for($i=0;$i<3;$i++)
+                @for($i=0;$i<0;$i++)
                 <div class="col-xs-3">
                     <table class="table-condensed encabezado">
                         <tr>

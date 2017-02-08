@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Upload;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\SubRodal;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -39,19 +39,44 @@ class GfmisController extends Controller {
 	public function create() {
 
 		Excel::load(public_path() . '/uploads/GFMIS/' . date("Y-m-d") . '.xlsx', function ($reader) {
+			// dd($reader->get()[2]->objectid);
 			$this->validacion($reader->get());
-
+			$rows = 0;
 			foreach ($reader->get() as $value) {
-				dd($value);
-				User::create([
-					'name' => $value->name,
-					'email' => $value->email,
-					'password' => $value->password,
-				]);
+				// echo (var_dump($value->orden));
+				if ($value->orden) {
+					// dd($value);
+
+					$rows++;
+					SubRodal::updateOrCreate(
+						['id' => $value->orden],
+						[
+							'objectid' => $value->objectid,
+							'country' => $value->pais,
+							'fund' => $value->fondo,
+							'property' => $value->finca,
+							'rodal' => $value->rodal,
+							'subrodal' => $value->subrodal,
+							'specie' => $value->especie,
+							'municipality' => $value->municipio,
+							'zona' => $value->zona,
+							'area' => $value->area,
+							'surface' => $value->sup_ha,
+							'plantation_date' => $value->fecha_plantacion,
+							'supervisor' => $value->supervisor,
+
+							'state' => 1,
+						]);
+				}
+			}
+			if ($rows == 0) {
+				\Alert::danger('No Fue posible almacenar ningun registro.');
+			} else {
+				\Alert::success($rows . " Registros Fueron Afectados.");
 			}
 
 		});
-
+		return redirect()->route('upload.GFMIS.index');
 		return view('upload.gfmis');
 	}
 	public function validacion($values) {
@@ -66,53 +91,38 @@ echo "<p> 'Modelo::where('name',$keys)->first()'</p>";
 }
 exit(var_dump("nada"));*/
 		$var = "";
-		$a = ["objectid",
-			"pais",
-			"fondo",
-			"finca",
-			"rodal",
-			"subrodal",
-			"especie",
-			"municipio",
-			"zona",
-			"area",
-			"origen_clon",
-			"sup_ha",
-			"fecha_plantacion",
-			"supervisor",
-			"guarda_forestal",
-			"fecha_ult_raleo",
-			"fecha_ult_poda",
-			"dencidad_ult_poda",
-			"ap",
-			"edad_actual",
-			"clon",
-		];
-		echo var_dump($a);
+		$a = headersGfmisArray();
+		// echo var_dump($a);
 		foreach ($values[0] as $key => $value) {
 			$ok = array_search($key, $a);
-			($ok > -1) ?: $var .= $key . ';';
+			($ok > -1) ?: $var .= '*' . $key . '; ';
 
 		}
 // echo date_format($values[2]->fecha_plantacion, 'd-m-Y');
-		dd($var, $values[2]);
-		foreach ($values as $user) {
-			$var = $user->var;
-			dd($var);
-			$name = $user->name;
-			$email = $user->email;
-			$password = $user->password;
-			if ($password == null) {
-				\Alert::danger('password es obligatorio');
-				$errores++;
-			}
-			if (1 == User::where('email', $email)->count()) {
-				\Alert::danger('Ya exite usuario');
-				$errores++;
-			}
-		}
 
-		($errores > 0) ? exit(view('upload.gfmis')) : \Alert::success(trans('alerts.success'));
+		if ($var !== "") {
+
+			\Alert::warning('Advertencia los siguientes columnas adicionales no fueron tomados en cuenta:   ' . $var);
+		}
+		//
+		// dd($var, $values[2]);
+		// foreach ($values as $value) {
+		// 	$var = $value->var;
+		// 	dd($var);
+		// 	$name = $value->name;
+		// 	$email = $value->email;
+		// 	$password = $value->password;
+		// 	if ($password == null) {
+		// 		\Alert::danger('password es obligatorio');
+		// 		$errores++;
+		// 	}
+		// 	if (1 == User::where('email', $email)->count()) {
+		// 		\Alert::danger('Ya exite usuario');
+		// 		$errores++;
+		// 	}
+		// }
+
+		// ($errores > 0) ? exit(view('upload.gfmis')) : \Alert::success(trans('alerts.success'));
 		return false;
 	}
 }

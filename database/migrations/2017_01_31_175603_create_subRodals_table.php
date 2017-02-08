@@ -14,32 +14,32 @@ class CreateSubRodalsTable extends Migration {
 		Schema::create('subRodals', function (Blueprint $table) {
 			$table->increments('id');
 			//otras tablas
-			$table->integer('objectid')->index();
-			$table->String('country');
-			$table->String('fund');
-			$table->integer('property');
-			$table->String('rodal');
-			$table->String('subrodal');
-			$table->String('specie');
+			$table->integer('objectid')->index()->nullable();
+			$table->String('country')->nullable();
+			$table->String('fund')->nullable();
+			$table->integer('property')->nullable();
+			$table->String('rodal')->nullable();
+			$table->String('subrodal')->nullable();
+			$table->String('specie')->nullable();
 			// Datos de Ubicacion
-			$table->String('municipality');
-			$table->String('zona');
-			$table->String('area');
+			$table->String('municipality')->nullable();
+			$table->String('zona')->nullable();
+			$table->String('area')->nullable();
 			//datos del subRodal
-			$table->integer('percent_clon'); //porcentaje de clones
-			// $table->integer('updated_with'); //porcentaje de clones en inventario
-			// $table->decimal('surface_gfmis', 7, 2);
-			$table->decimal('surface', 7, 2);
-			$table->date('plantation'); //fecha de importacion ingresada por update
-			$table->String('supervisor');
-			$table->String('fores_guard');
+			$table->integer('percent_clon')->nullable(); //porcentaje de clones
+			// $table->integer('updated_with')->nullable(); //porcentaje de clones en inventario
+			// $table->decimal('surface_gfmis', 7, 2)->nullable();
+			$table->decimal('surface', 7, 2)->nullable();
+			$table->date('plantation_date')->nullable(); //fecha de importacion ingresada por update
+			$table->String('supervisor')->nullable();
+			$table->String('fores_guard')->nullable();
 
-			$table->date('pruning_date'); //fecha de poda ingresada por update
-			$table->date('roleo_date'); //fecha de roleo ingresada por update
-			$table->integer('pruning_density'); //Ultima dencidad podada
-			// $table->foreign('catalog_id')->references('id')->on('catalogs');
-			// $table->integer('idMenu')->index('idMenu');
-			$table->boolean('state');
+			$table->date('pruning_date')->nullable(); //fecha de poda ingresada por update
+			$table->date('roleo_date')->nullable(); //fecha de roleo ingresada por update
+			$table->integer('pruning_density')->nullable(); //Ultima dencidad podada
+			// $table->foreign('catalog_id')->references('id')->on('catalogs')->nullable();
+			// $table->integer('idMenu')->index('idMenu')->nullable();
+			$table->boolean('state')->nullable();
 			$table->timestamps();
 		});
 	}

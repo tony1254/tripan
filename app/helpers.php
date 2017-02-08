@@ -327,3 +327,29 @@ where
 
 	return $headersPlants;
 }
+function headersGfmisArray() {
+	return [
+		"orden",
+		"objectid",
+		"pais",
+		"fondo",
+		"finca",
+		"rodal",
+		"subrodal",
+		"especie",
+		"municipio",
+		"zona",
+		"area",
+		"origen_clon",
+		"sup_ha",
+		"fecha_plantacion",
+		"supervisor",
+		"guarda_forestal",
+		"fecha_ult_raleo",
+		"fecha_ult_poda",
+		"dencidad_ult_poda",
+		"ap", //año plantacion
+		"edad_actual", //edad actual
+		"clon", //porcentage de clon del inventario
+	];
+}
