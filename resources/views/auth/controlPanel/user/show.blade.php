@@ -52,9 +52,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                <!-- {{ $i=1 }} -->
                     @foreach($permissions as $permission)
                     <tr>
-                        <td>{{ $permission->id }}</td>
+                        <td>{{ $i++ }}</td>
                         <td>{{findMenuName( $permission->menu_id) }}</td>
                         <td>
                             <!-- Switch -->

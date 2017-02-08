@@ -35,7 +35,7 @@ class CreateSubRodalsTable extends Migration {
 			$table->String('fores_guard')->nullable();
 
 			$table->date('pruning_date')->nullable(); //fecha de poda ingresada por update
-			$table->date('roleo_date')->nullable(); //fecha de roleo ingresada por update
+			$table->date('raleo_date')->nullable(); //fecha de raleo ingresada por update
 			$table->integer('pruning_density')->nullable(); //Ultima dencidad podada
 			// $table->foreign('catalog_id')->references('id')->on('catalogs')->nullable();
 			// $table->integer('idMenu')->index('idMenu')->nullable();

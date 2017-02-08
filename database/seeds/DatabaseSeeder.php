@@ -15,13 +15,65 @@ class DatabaseSeeder extends Seeder {
 		$menu->subId = 0;
 		$menu->name = "Usuarios";
 		$menu->save();
+
 		$menu = new Menu;
 		$menu->subId = 1;
+		$menu->name = "Ver";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 1;
+		$menu->name = "Crear";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 1;
+		$menu->name = "Actulizar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 1;
+		$menu->name = "Eliminar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 0;
 		$menu->name = "Panel de Control";
 		$menu->save();
+
 		$menu = new Menu;
 		$menu->subId = 0;
 		$menu->name = "Inportar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 0;
+		$menu->name = "GFMIS";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 0;
+		$menu->name = "Generador de Formualrios";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 9;
+		$menu->name = "Ver";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 9;
+		$menu->name = "Crear";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 9;
+		$menu->name = "Actulizar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 9;
+		$menu->name = "Eliminar";
 		$menu->save();
 
 		DB::table('users')->insert([

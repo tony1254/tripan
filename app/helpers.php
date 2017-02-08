@@ -34,6 +34,18 @@ function findPermission($idMenu) {
 	$value = $value->where('menu_id', $idMenu)->first();
 	return (isset($value)) ? $value->state : false;
 }
+/**
+ * Funcion para crear tabulaciones en html
+ * @param  integer $value [description]
+ * @return [type]         [description]
+ */
+function tab($value = 1) {
+	$out = "";
+	for ($i = 0; $i < $value; $i++) {
+		echo "&nbsp;";
+	}
+	// return $out;
+}
 
 /**
  * buscar en la variable de sesion el nombre del Menu
@@ -42,7 +54,9 @@ function findPermission($idMenu) {
  */
 function findMenuName($idMenu) {
 	$value = Session::get('menuName');
-	return $value->find($idMenu)->name;
+	$value = $value->find($idMenu);
+	$value = ($value->subId > 0) ? tab(10) . "╚-»" . $value->name : $value->name;
+	return $value;
 
 }
 
@@ -127,7 +141,7 @@ function createPermissions($newUserId) {
 			    `created_at`,
 			    `updated_at`
 			  )
-			  SELECT  ' . $newUserId . ' , m.`id`, 1, now(),now() FROM `menus` as m  WHERE 1;
+			  SELECT  ' . $newUserId . ' , `id`, 1, now(),now() FROM `menus` as m  WHERE 1 order by `id`;
 		', [1]);
 
 }
@@ -348,8 +362,8 @@ function headersGfmisArray() {
 		"fecha_ult_raleo",
 		"fecha_ult_poda",
 		"dencidad_ult_poda",
-		"ap", //año plantacion
-		"edad_actual", //edad actual
+		"ap", //año plantacion calculado en base a la fecha de plantacion
+		"edad_actual", //edad actual calculado
 		"clon", //porcentage de clon del inventario
 	];
 }

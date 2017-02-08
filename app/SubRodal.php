@@ -28,10 +28,10 @@ class SubRodal extends Model {
 		'percent_clon', //porcentaje de Clon
 		'surface',
 		'plantation_date',
-		'',
+		'supervisor',
 		'fores_guard',
+		'raleo_date',
 		'pruning_date', //poda
-		'roleo_date',
 		'pruning_density', //densidad
 		'state',
 	];

@@ -61,9 +61,15 @@ class GfmisController extends Controller {
 							'municipality' => $value->municipio,
 							'zona' => $value->zona,
 							'area' => $value->area,
+							'area' => $value->area,
+							'percent_clon' => $value->origen_clon,
 							'surface' => $value->sup_ha,
 							'plantation_date' => $value->fecha_plantacion,
 							'supervisor' => $value->supervisor,
+							'fores_guard' => $value->guarda_forestal,
+							'raleo_date' => $value->fecha_ult_raleo,
+							'pruning_date' => $value->fecha_ult_poda,
+							'pruning_density' => $value->dencidad_ult_poda,
 
 							'state' => 1,
 						]);
