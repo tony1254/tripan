@@ -23,6 +23,7 @@ Route::get('subir/GFMIS', ['uses' => 'Upload\GfmisController@index', 'as' => 'up
 Route::post('subir/GFMIS', ['uses' => 'Upload\GfmisController@store', 'as' => 'upload.GFMIS.store']);
 Route::get('subir/GFMIS/create', ['uses' => 'Upload\GfmisController@create', 'as' => 'upload.GFMIS.create']);
 
-Route::resource('generador-de-formularios', 'FormGeneratorController');
+Route::resource('FormGenerator', 'FormGeneratorController');
+Route::resource('catalog', 'CatalogController');
 
 // Route::post('generador-de-formularios', ['uses' => 'FormGeneratorController@store', 'as' => 'formGenerator.store']);

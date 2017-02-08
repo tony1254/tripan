@@ -1,8 +1,8 @@
 <?php
+use App\HeaderPlants;
 use App\Menu;
 use App\Permission;
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 /*
 obtiene el usuario acutal que inicio session
  */
@@ -207,15 +207,15 @@ where
 					continue;
 				} else if (isCalidad($xx->id)) {
 					$sections++;
-					echo "<td class='$color' colspan='5'>Seccion ";
+					echo "<td class='$color strech' colspan='5'>Seccion ";
 					echo seccionName($sections);
 					// echo $sections;
 					echo "</td>";
 
 				} else {
-					echo (($xx->catlog_type)) ?
+					echo (($xx->catalog_type)) ?
 					"<td class='$color strech' rowspan='2'>" . $retVal . "</td>" :
-					"<td class='$color'rowspan='2' colspan='" . (1 + $xx->number + $xx->decimal) . "'>" . $retVal . "</td>";
+					"<td class='$color strech' rowspan='2' colspan='" . (1 + $xx->number + $xx->decimal) . "'>" . $retVal . "</td>";
 					// echo "<td class='$color' rowspan='2'>" . $retVal . "</td>";
 				}
 
@@ -225,7 +225,7 @@ where
 			echo "<tr>";
 			for ($i = 0; $i < $sections; $i++) {
 				echo "<td class='strech $color'>cal</td>";
-				echo "<td class='$color' colspan='4'>altura</td>";
+				echo "<td class='strech $color' colspan='4'>altura</td>";
 			}
 			echo "</tr>";
 			echo "<tr>";
@@ -241,16 +241,16 @@ where
 
 				$retVal = "&nbsp";
 				$color = "";
-				if ($xx->catlog_type) {
+				if ($xx->catalog_type) {
 					echo "<td class='$color strech'>" . "&nbsp" . "</td>";
 
 				} else {
 					for ($i = 0; $i < $xx->number; $i++) {
-						echo "<td class='$color'>" . $retVal . "</td>";
+						echo "<td class='$color strech'>" . $retVal . "</td>";
 					}
-					echo "<td class='$color strech text-center'><b>.</b></td>";
+					echo "<td class='$color coma text-center'><b>.</b></td>";
 					for ($i = 0; $i < $xx->decimal; $i++) {
-						echo "<td class='$color'>" . $retVal . "</td>";
+						echo "<td class='$color strech'>" . $retVal . "</td>";
 
 					}
 				}
@@ -269,15 +269,61 @@ function seccionName($value = '') {
 	$salida .= (($value == 4) || ($value == 5) || ($value == 6)) ? "" : $value;
 	return $salida;
 }
-function arrayOrs(Request $request) {
-
-	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));
+function arrayOrs($request) {
 	$texto = "";
-	for ($i = 0; $i < 60; $i++) {
-		if ($request->has($i)) {
-
-			$texto .= " or id = " . $i;
+	// dd($request, $request->all());
+	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));
+	$request = explode("', '", $request);
+	foreach ($request as $key => $value) {
+		if (is_numeric($value)) {
+			$texto .= " or id = " . $value;
+			if (isCalidad($value)) {
+				$texto .= " or id = " . ($value + 1);
+				// return is_numeric($value) . " " . $value;
+			}
 		}
+
 	}
+
 	return $texto;
+}
+function arrayOrsSubId($request) {
+	$texto = "";
+	// dd($request, $request->all());
+	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));
+	$request = explode("', '", $request);
+	foreach ($request as $key => $value) {
+		if (is_numeric($value)) {
+			$texto .= " or catalog_subId = " . $value;
+			if (isCalidad($value)) {
+				$texto .= " or catalog_subId = " . ($value + 1);
+				// return is_numeric($value) . " " . $value;
+			}
+		}
+
+	}
+
+	return $texto;
+}
+function getCatalog($value = '') {
+	return HeaderPlants::findOrFail($value)->catalog_id;
+}
+function catalogArray($request) {
+	$array = [];
+	$request = explode("', '", $request);
+	foreach ($request as $key => $value) {
+		if (is_numeric($value)) {
+			array_push($array, getCatalog($value));
+		}
+
+	}
+	$catalogos = array_unique($array);
+	$catalogos = implode("', '", $catalogos);
+	$ids = arrayOrsSubId($catalogos);
+	$headersPlants = DB::select('select * from catalogs
+where
+0
+' . $ids);
+
+	return $headersPlants;
 }

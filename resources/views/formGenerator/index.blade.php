@@ -2,12 +2,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-offset-10">
-            <a class="waves-effect  btn  green green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Nuevo" onclick="window.location='{{ route('generador-de-formularios.create') }}'">@lang('buttons.create')</a>
+            <a class="waves-effect  btn  green green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Nuevo" onclick="window.location='{{ route('FormGenerator.create') }}'">@lang('buttons.create')</a>
         </div>
     </div>
     <div class="row text-capitalize">
         <div class="panel panel-default">
-            <div class="panel-heading text-center"> Formularios</div>
+            <div class="panel-heading text-center"> @lang('alerts.custom.forms')</div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
@@ -16,9 +16,9 @@
             <thead>
                 <tr>
                     <th data-field="price">No.</th>
-                    <th data-field="id">Nombres</th>
-                    <th data-field="name">description</th>
-                    <th data-field="name">Actions</th>
+                    <th data-field="id">@lang('alerts.custom.name')</th>
+                    <th data-field="name">@lang('alerts.custom.description')</th>
+                    <th data-field="name">@lang('alerts.custom.actions')</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,11 +28,11 @@
                     <td>{{ $form->name }}</td>
                     <td>{{ $form->description }}</td>
                     <td>
-                        {{ Form::open(['method' => 'DELETE', 'route' => ['generador-de-formularios.destroy', $form->id]]) }}
-                        <a href="{{  route('generador-de-formularios.show', $form->id) }}" class="btn-floating btn-sm waves-effect waves-light blue" target="_blank">
+                        {{ Form::open(['method' => 'DELETE', 'route' => ['FormGenerator.destroy', $form->id]]) }}
+                        <a href="{{  route('FormGenerator.show', $form->id) }}" class="btn-floating btn-sm waves-effect waves-light blue" target="_blank">
                             <i class="material-icons">info</i>
                         </a>
-                        <a href="{{  route('generador-de-formularios.edit', $form->id) }}" class="btn-floating btn-sm waves-effect waves-light orange">
+                        <a href="{{  route('FormGenerator.edit', $form->id) }}" class="btn-floating btn-sm waves-effect waves-light orange">
                             <i class="material-icons">mode_edit</i>
                         </a>
                         @if($form->state)

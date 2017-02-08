@@ -19,4 +19,14 @@ return [
 	'enable' => 'Activado',
 	'disable' => 'Desactivado',
 
+	'custom' => [
+		'name' => 'Nombre',
+		'names' => 'Nombres',
+		'description' => 'Descripcion',
+		'action' => 'Accion',
+		'actions' => 'Acciones',
+		'form' => 'Formulario',
+		'forms' => 'formularios',
+	],
+
 ];

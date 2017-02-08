@@ -2,49 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
+use App\Catalog;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller {
-
-	public function Catalogo($value) {
-
-	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-
-		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
-	}
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function indexTable($table) {
-
-/*// Codeigo para operar En tabla plantaS
-$var = 'c,';
-$query = '
-SELECT `id`, a, `b`, ' . $var . '@h,@J
-FROM `prueba`
-WHERE 1;
-';
-$reglas = ['()**'];
-$valor = ['power()'];
-$query = str_replace($reglas, $valor, $query);
-// dd($query);
-$var = 'set @h:=1;
-set @J:=3;';
-addParameters($var); //funcino agrega parametros separados por ";"
-$a = DB::select($query);
-dd($a);
-dd(DB::table($table)->find(1));
- */
-		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
+		dd("hola");
 	}
 
 	/**
@@ -69,62 +37,41 @@ dd(DB::table($table)->find(1));
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  \App\Catalog  $catalog
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Catalog $catalog) {
 		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  \App\Catalog  $catalog
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
-		// Codigo modificaicon permiso
-		$permission = Permission::find($id);
-		if ($permission->state) {
-			$permission->state = false;
-			$state = trans('alerts.disable');
-		} else {
-			$permission->state = true;
-			$state = trans('alerts.enable');
-		}
-		$permission->save();
-		return view('auth.controlPanel.permission.edit')->with('msj', findMenuName($permission->menu_id) . ' ' . $state);
-
-		return ('funciona' . findMenuName($permission->menu_id));
+	public function edit(Catalog $catalog) {
+		//
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
+	 * @param  \App\Catalog  $catalog
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id) {
-		// Codigo modificaicon permiso
-		$permission = Permission::find($id);
-		if ($permission->state) {
-			$permission->state = false;
-		} else {
-			$permission->state = true;
-		}
-		$permission->save();
-		return ('funciona');
-		// return redirect()->back();
+	public function update(Request $request, Catalog $catalog) {
+		//
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  \App\Catalog  $catalog
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Catalog $catalog) {
 		//
 	}
 }

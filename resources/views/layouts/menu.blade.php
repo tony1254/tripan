@@ -2,7 +2,7 @@
 <li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; test">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">test <span class="caret"></span></a>
     <ul class="dropdown-menu">
-        <li><a href="{{ url('/generador-de-formularios') }}">Generador de Formularios</a></li>
+        <li><a href="{{ url('/FormGenerator') }}">Generador de Formularios</a></li>
         <li><a href="#">Another action</a></li>
         <li><a href="#">Something else here sd dsa dsa dsa</a></li>
         <li role="separator" class="divider"></li>
