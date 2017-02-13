@@ -1,4 +1,3 @@
-@section('title')Catalogos - ver - {{ $catalogs[0]->name }} @endsection
 @extends('layouts.app') @section('content')
 <div class="container">
 

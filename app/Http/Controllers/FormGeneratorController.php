@@ -28,8 +28,11 @@ class FormGeneratorController extends Controller {
 		// dd($form->headers, arrayOrs($form->headers));
 		/* $form->headers =  implode(',', $request->all()); */
 		// $form->user_id = 1;
+		//
+		$form->userCreator_id = currentUser()->id;
+		$form->userModifier_id = currentUser()->id;
 		$form->save();
-		auth()->user()->formsCreator()->save($form);
+
 		// dd($request->all(), $form);
 		return redirect()->route('FormGenerator.index');
 

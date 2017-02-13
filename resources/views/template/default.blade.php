@@ -1,9 +1,9 @@
 <div id="field_{{ $id }}"{!! Html::classes(['form-group','input-field ' ,'has-error' => $hasErrors]) !!}>
-    <label for="{{ $id }}" class=" ">
+        {!! $input !!}
+    <label id="label_{{ $id }}" for="{{ $id }}" class=" ">
         {{ $label }}
     </label>
 
-        {!! $input !!}
     @if ($required)
         <span class="label label-info">Required</span>
     @endif

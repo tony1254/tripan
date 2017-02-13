@@ -9,7 +9,7 @@
 <link rel="icon" href="{{ asset('/content/logo.ico')}}" type="image/x-icon"/>
 <link rel="shortcut icon" href="{{ asset('/content/logo.ico')}}" type="image/x-icon"/>
 {{-- titulo --}}
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([

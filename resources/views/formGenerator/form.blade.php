@@ -1,3 +1,4 @@
+@section('title')Generador de Formularios - Imprimir @endsection
 @extends('layouts.base')
 @extends('layouts.startcss')
 @extends('layouts.startscripts')

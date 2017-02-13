@@ -101,6 +101,31 @@ class DatabaseSeeder extends Seeder {
 		$menu->name = "Eliminar";
 		$menu->save();
 
+		$menu = new Menu;
+		$menu->subId = 0;
+		$menu->name = "HeaderPlants";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Ver";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Crear";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Actulizar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Eliminar";
+		$menu->save();
+
 		DB::table('users')->insert([
 			[
 				'name' => 'Slave',

@@ -1,3 +1,4 @@
+@section('title')Generador de Formularios - Crear @endsection
 @extends('layouts.app') @section('content')
 <div class="container">
     <div class="row text-capitalize">
