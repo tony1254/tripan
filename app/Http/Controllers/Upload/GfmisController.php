@@ -49,9 +49,8 @@ class GfmisController extends Controller {
 
 					$rows++;
 					SubRodal::updateOrCreate(
-						['id' => $value->orden],
+						['objectid' => $value->objectid],
 						[
-							'objectid' => $value->objectid,
 							'country' => $value->pais,
 							'fund' => $value->fondo,
 							'property' => $value->finca,

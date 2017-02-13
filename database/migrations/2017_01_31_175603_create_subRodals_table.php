@@ -14,7 +14,7 @@ class CreateSubRodalsTable extends Migration {
 		Schema::create('subRodals', function (Blueprint $table) {
 			$table->increments('id');
 			//otras tablas
-			$table->integer('objectid')->index()->nullable();
+			$table->integer('objectid')->index();
 			$table->String('country')->nullable();
 			$table->String('fund')->nullable();
 			$table->integer('property')->nullable();
