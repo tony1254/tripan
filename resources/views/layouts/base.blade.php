@@ -5,15 +5,16 @@
     @yield('head')
     @yield('startCss')
     @yield('css')
+
 </head>
 <body>
+        {!!Form::open(['id'=>'logout-form','url'=>'/logout'])!!}
+        {!!Form::close()!!}
     <div id="app">
-		@yield('navBar')
+        @yield('navBar')
 
 {!! Alert::render() !!}
         @yield('content')
-        {!!Form::open(['id'=>'logout-form','url'=>'/logout'])!!}
-        {!!Form::close()!!}
 
     </div>
 

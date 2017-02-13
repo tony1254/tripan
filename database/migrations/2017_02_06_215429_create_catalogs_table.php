@@ -17,6 +17,7 @@ class CreateCatalogsTable extends Migration {
 			$table->integer('code');
 			$table->string('name');
 			$table->string('description');
+			$table->string('state')->default(1);
 			$table->timestamps();
 		});
 	}

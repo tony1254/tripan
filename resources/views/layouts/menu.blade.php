@@ -2,7 +2,13 @@
 <li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; test">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">test <span class="caret"></span></a>
     <ul class="dropdown-menu">
-        <li><a href="{{ url('/FormGenerator') }}">Generador de Formularios</a></li>
+          <li class="{{ (findPermission(9))? : " disabled " }} ">
+            <a href="{{ (findPermission(9))? url('/FormGenerator'): " # " }}">{{ findMenuName(9) }}</a>
+        </li>
+          <li class="{{ (findPermission(14))? : " disabled " }} ">
+            <a href="{{ (findPermission(14))? url('/catalog'): " # " }}">{{ findMenuName(14) }}</a>
+        </li>
+
         <li><a href="#">Another action</a></li>
         <li><a href="#">Something else here sd dsa dsa dsa</a></li>
         <li role="separator" class="divider"></li>
@@ -14,7 +20,10 @@
 <li class="tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; Importar"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-import" ></span></a>
     <ul class="dropdown-menu">
         <li><a href="{{ url('/file') }}">Usuarios</a></li>
-        <li><a href="{{ url('/subir/GFMIS') }}">GFMIS</a></li>
+                <li class="{{ (findPermission(8))? : " disabled " }} ">
+            <a href="{{ (findPermission(8))? url('/subir/GFMIS'): " # " }}">{{ findMenuName(8) }}</a>
+        </li>
+
 
         <li role="separator" class="divider"></li>
         <li><a href="#">Separated link</a></li>
@@ -35,8 +44,8 @@
         <li class="{{ (findPermission(1))? : " disabled " }} ">
             <a href="{{ (findPermission(1))? url('/user'): " # " }}">{{ findMenuName(1) }}</a>
         </li>
-        <li class="{{ (findPermission(2))? : " disabled " }} ">
-            <a href="{{ (findPermission(2))? url('/panel-de-control'): " # " }}" class="btn-block ">{{ findMenuName(2) }}</a>
+        <li class="{{ (findPermission(6))? : " disabled " }} ">
+            <a href="{{ (findPermission(6))? url('/panel-de-control'): " # " }}" class="btn-block ">{{ findMenuName(6) }}</a>
         </li>
         <li class="divider"></li>
         <li>

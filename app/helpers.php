@@ -1,7 +1,9 @@
 <?php
+use App\Catalog;
 use App\HeaderPlants;
 use App\Menu;
 use App\Permission;
+use App\User;
 use Illuminate\Support\Facades\DB;
 /*
 obtiene el usuario acutal que inicio session
@@ -13,7 +15,17 @@ obtiene el usuario acutal que inicio session
 function currentUser() {
 	return auth()->user();
 }
-
+function userName($id) {
+	// dd($id);
+	return User::findOrFail($id)->name;
+}
+function catalogItemFindFirst($value = '') {
+	return Catalog::where('catalog_subId', $value)->first();
+}
+function catalogItemFindLast($value = '') {
+	// dd(Catalog::where('catalog_subId', $value)->get());
+	return Catalog::where('catalog_subId', $value)->max('code');
+}
 /**
  * obtiene los permisos que posee un Usuario
  * @return App\Permission Todos los Permisos del usuario logeado Actual
@@ -366,4 +378,9 @@ function headersGfmisArray() {
 		"edad_actual", //edad actual calculado
 		"clon", //porcentage de clon del inventario
 	];
+}
+function headersIsOn($value = '', $form) {
+	$headerOld = explode("', '", $form->headers);
+	return array_search($value, $headerOld);
+
 }

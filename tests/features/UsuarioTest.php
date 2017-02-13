@@ -95,19 +95,19 @@ class UsuarioTest extends FeaturesTestCase {
 		//inicio sesion Default
 		$this->actingAs($this->defaultUser());
 
-		$permissionTest = Permission::where('user_id', 2)->first();
+		$permissionTest = Permission::where('user_id', 1)->first();
 		//then
-		$this->visit(route('user.show', 2))
-			->see('permission_4');
-/*
-->click('permission_' . $permissionTest->id);
-// permission_4
-$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 0]);
+		$this->visit(route('user.show', 1))
+			->see('permission_' . $permissionTest->id);
 
-$this->seePageIs(route('user.show', 2))
-->click('permission_' . $permissionTest->id);
+		//->click('permission_' . $permissionTest->id);
+		// // permission_4
+		// 		$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 0]);
 
-$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 1]);*/
+// 		$this->seePageIs(route('user.show', 1))
+		// 			->click('permission_' . $permissionTest->id);
+
+// 		$this->SeeInDatabase('permissions', ['id' => $permissionTest->id, 'state' => 1]);
 
 	}
 

@@ -15,6 +15,7 @@ return [
 
 	'generate' => '<span class="glyphicon glyphicon-plus"></span> Generar',
 	'create' => '<span class="glyphicon glyphicon-plus"></span> Crear',
+	'add' => '<span class="glyphicon glyphicon-plus"></span> Añadir',
 	'accept' => '<span class="glyphicon glyphicon-ok"></span> Aceptar',
 	'cancel' => '<span class="glyphicon glyphicon-remove"></span> Cancelar',
 	'next' => 'Siguiente &raquo;',

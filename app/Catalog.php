@@ -12,6 +12,6 @@ class Catalog extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'description', 'headers', 'state',
+		'catalog_subId', 'code', 'name', 'description', 'state',
 	];
 }

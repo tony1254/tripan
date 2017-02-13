@@ -76,6 +76,31 @@ class DatabaseSeeder extends Seeder {
 		$menu->name = "Eliminar";
 		$menu->save();
 
+		$menu = new Menu;
+		$menu->subId = 0;
+		$menu->name = "Catalogos";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Ver";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Crear";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Actulizar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 14;
+		$menu->name = "Eliminar";
+		$menu->save();
+
 		DB::table('users')->insert([
 			[
 				'name' => 'Slave',
@@ -139,12 +164,12 @@ class DatabaseSeeder extends Seeder {
 
 			]);
 		DB::table('forms')->insert([
-			['name' => 'Unico', 'description' => 'formulario Unico y primero existente', 'headers' => "_token', 'name', 'description', '1', '2', '3', '4', '6', '8', '10', '12', '14', '16', '17', '22', '23', '24', '25', '26', 'create'"],
+			['userCreator_id' => '2', 'userModifier_id' => '2', 'name' => 'Unico', 'description' => 'formulario Unico y primero existente', 'headers' => "_token', 'name', 'description', '1', '2', '3', '4', '6', '8', '10', '12', '14', '16', '17', '22', '23', '24', '25', '26', 'create'"],
 		]);
 		DB::table('catalogs')->insert([
-			['catalog_subId' => '1', 'code' => '1', 'name' => 'calidades secciones', 'description' => 'Exportación'],
-			['catalog_subId' => '1', 'code' => '2', 'name' => 'calidades secciones', 'description' => 'Mercado Nacional'],
-			['catalog_subId' => '1', 'code' => '3', 'name' => 'calidades secciones', 'description' => 'Biomasa'],
+			['catalog_subId' => '1', 'code' => '1', 'name' => 'calidad de seccion', 'description' => 'Exportación'],
+			['catalog_subId' => '1', 'code' => '2', 'name' => 'calidad de seccion', 'description' => 'Mercado Nacional'],
+			['catalog_subId' => '1', 'code' => '3', 'name' => 'calidad de seccion', 'description' => 'Biomasa'],
 			['catalog_subId' => '2', 'code' => '1', 'name' => 'origen', 'description' => 'clon'],
 			['catalog_subId' => '2', 'code' => '2', 'name' => 'origen', 'description' => 'semilla'],
 			['catalog_subId' => '3', 'code' => '1', 'name' => 'raleo', 'description' => 'sin marca'],

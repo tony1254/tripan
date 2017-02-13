@@ -1804,6 +1804,7 @@ fieldset[disabled] .form-group .form-control {
   background-image: -webkit-linear-gradient(#f44336, #f44336), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
   background-image: -o-linear-gradient(#f44336, #f44336), -o-linear-gradient(#D2D2D2, #D2D2D2);
   background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
+    border-bottom: 1px solid #F44336;  box-shadow: 0 1px 0 0 #F44336;
 }
 .form-group.has-error label.control-label,
 .form-group.has-error .help-block {

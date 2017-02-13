@@ -4,7 +4,7 @@
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}} {{-- Style Bootstrap --}}
 <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('/bower_components/google-material/material-icons.css') }}" rel="stylesheet">
-<link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css') }}" rel="stylesheet">
+<link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css') }}" rel="stylesheet">
 <link href="{{ asset('/bower_components/bootstrap-material-design/dist/css/ripples.min.css') }}" rel="stylesheet">
  {{-- Materialize --}}
 <link href="{{ asset('/bower_components/materialize/dist/css/materialize.min.css') }}" rel="stylesheet">

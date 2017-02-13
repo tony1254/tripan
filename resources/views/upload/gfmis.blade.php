@@ -1,20 +1,20 @@
-@section('css')
-<style type="text/css">
-	.table-bordered>tbody>tr>td {
-	 	border: 1px solid black;
-	    border-collapse: collapse;
-	}
-</style>
-@endsection
-@extends('upload.form') @section('formOpen') {!! Form::open(['route'=> 'upload.GFMIS.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => ' cyan lighten-5 dropzone well']) !!} @endsection @section('suggestedFormat')
+
+@extends('upload.form')
+ @section('afterUpload'){{ asset('/subir/GFMIS/create')}}@endsection
+@section('formOpen')
+
+{!! Form::open(['route'=> 'upload.GFMIS.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => ' cyan lighten-5 dropzone well']) !!} @endsection
+@section('suggestedFormat')
 <div class="panel panel-default ">
     <div class="panel-heading  indigo accent-1 ">
         <h3 class="panel-title">Columnas de Importacion
+
+
 <button class=" waves-effect waves-light btn btn-flat indigo accent-3 " onclick="copyToClipboard('#table')">Copiar </button>
 
         </h3>
     </div>
-    <div class="panel-body">
+
         <div class="table-responsive">
             <table class="table table-condensed table-streped table-bordered" id="a">
                 <tr>
@@ -26,17 +26,21 @@
                 </tr>
             </table>
         </div>
-    </div>
+
 </div>
 <input style="display:none" id="table" type="text" value="
 @foreach(headersGfmisArray() as $header)
-{{   ($header==="orden") ? "*".$header."	" : "".$header."	" }}
+{{   ($header==="orden") ? "*".$header."  " : "".$header."  " }}
 @endforeach
 ">
-@endsection
-@section('scripts')
+<style type="text/css">
+  .table-bordered>tbody>tr>td {
+    border: 1px solid black;
+      border-collapse: collapse;
+  }
+</style>
 <script type="text/javascript">
-	function copyToClipboard(elemento) {
+  function copyToClipboard(elemento) {
   var $temp = $("<input>")
   $("body").append($temp);
   $temp.val($(elemento).val()).select();
@@ -45,4 +49,4 @@
 }
 </script>
 @endsection
- @section('afterUpload'){{ asset('/subir/GFMIS/create')}}@endsection
+

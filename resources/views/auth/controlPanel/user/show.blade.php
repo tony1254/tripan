@@ -2,7 +2,8 @@
 <div class="container">
     <div class="well col-md-10 col-md-offset-1">
         <div class="row">
-            <div class="col-sm-offset-9">
+          <div class="right ">
+
                 <a class="waves-effect  btn  green green-text text-lighten-5" href="{{  route('user.index') }}">@lang('buttons.back')</a>
             </div>
         </div>

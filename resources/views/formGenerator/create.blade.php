@@ -8,7 +8,7 @@
                         <p></p>
                         Creacion de formualrios
                     </div>
-                    <div class="col-xs-1">
+                    <div class="right">
                         <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('FormGenerator.index') }}">@lang('buttons.back')</a>
                     </div>
                 </div>
@@ -118,6 +118,11 @@
 $(document).ready(function() {
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+});
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        isCountCheck("Check something");
+    }
 });
 document.getElementById("test").onclick = function() {
     // alert(document.getElementById(1).checked);

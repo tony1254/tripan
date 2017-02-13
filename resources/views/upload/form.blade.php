@@ -25,6 +25,20 @@
                     Subir Archivos
                 </div>
                 <div class="panel-body">
+                <div class="row text-center">
+
+<div class="preloader-wrapper big active " id="loading">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+                </div>
                     @yield('formOpen')
                     <div class="dz-message " style="height:200;">
                        <h4>
@@ -57,6 +71,8 @@
     <script>
     $(document).ready(
         function() {
+                    $('#loading').fadeOut();
+
              console.log( "document loaded file script" );
 //alert("file uploaded");
 }
@@ -91,6 +107,8 @@
 
 
                     myDropzone.removeFile(file);
+                    $('#my-dropzone').fadeOut();
+                    $('#loading').fadeIn();
                     window.location.href = "@yield('afterUpload')";
                     });
                 });

@@ -27,6 +27,8 @@ return [
 		'actions' => 'Acciones',
 		'form' => 'Formulario',
 		'forms' => 'formularios',
+		'userCreator' => 'Creador',
+		'userModifier' => 'Moficador',
 	],
 
 ];

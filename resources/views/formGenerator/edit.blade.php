@@ -8,36 +8,43 @@
                         <p></p>
                         Creacion de formualrios
                     </div>
-                    <div class="col-xs-1">
-                        <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('generador-de-formularios.index') }}">@lang('buttons.back')</a>
+                    <div class="right">
+
+                        <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('FormGenerator.index') }}">@lang('buttons.back')</a>
                     </div>
                 </div>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {{ Form::open(['method' => 'post', 'route' => ['generador-de-formularios.store'],'id'=>'form1']) }}
+                        {{ Form::open(['action'=>['FormGeneratorController@update',$form->id],'method' => 'put','id'=>'form1']) }}
                         <p></p>
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="row">
-                                    {!! Field::text('name',['autofocus'=>'autofocus']) !!}
+                                    {!! Field::text('name',$form->name,['autofocus'=>'autofocus']) !!}
                                 </div>
                             </div>
                             <div class="col-sm-8">
                                 <div class="row">
-                                    {!! Field::text('description') !!}
+                                    {!! Field::text('description',$form->description) !!}
                                 </div>
                             </div>
                         </div>
                         <p></p>
-                        {{ (old('1'))?"check":""}}
+
                         <div class="row">
-                            <!--  {{ $seccion=0 }} -->
-                            @foreach ($headerPlants as $key => $value) @if(isAltura($value->id)) @continue @endif
                             <div class="col-sm-6">
-                                <div class="row">
+                             <!-- {{ $seccion=0 }}
+                                    {{ $rows=0  }}
+
+                                     -->
+
+
+                            @foreach ($headerPlants as $key => $value) @if(isAltura($value->id)) @continue @endif
+                            <div class=row>
                                     @if(isCalidad($value->id))
+                                    <!-- {{ $rows++  }} -->
                                     <div class="col-xs-3">
                                         <!-- {{ $seccion++ }} -->
                                         Seccion {{ seccionName($seccion) }}:
@@ -49,12 +56,14 @@
                                         <!-- Switch -->
                                         <div class="switch" id="{{ $value->id }}">
                                             <label>
-                                                <input name="{{ $value->id }}" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (old($value->id))?"checked":"" }}>
+                                                <input name="{{ $value->id }}" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (headersIsOn($value->id,$form))?"checked":"" }}>
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
                                     </div>
                                     @endif @if(!isSeccion($value->id))
+                                    <!-- {{ $rows++  }} -->
+
                                     <div class="col-xs-3">
                                         {{$value->name }}:
                                     </div>
@@ -65,19 +74,25 @@
                                         <!-- Switch -->
                                         <div class="switch" id="{{ $value->id }}">
                                             <label>
-                                                <input name="{{ $value->id }}" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (old($value->id))?"checked":"" }}>
+                                                <input name="{{ $value->id }}" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (headersIsOn($value->id,$form))?"checked":"" }}>
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
                                     </div>
                                     @endif
-                                </div>
-                            </div>
+                                    </div >
+                                    @if($rows>12)
+                                    <!-- {{ $rows=0  }} -->
+                                        </div>
+                                         <div class="col-sm-6">
+
+                                    @endif
                             @endforeach
+                            </div>
                         </div>
                         {{-- {!! Field::text('name') !!} {!! Field::email('email') !!} {!! Field::password('password') !!} {!! Field::passwosrd('password_confirmation') !!} --}} {{-- {!! Form::button(trans('buttons.create'), ['class' => 'btn teal white-text waves-effect', 'type' =>'submit','name'=>'create']) !!} --}}
                         <a id="test" class="btn teal white-text waves-effect">@lang('buttons.create')</a>
-                        <a class="waves-effect  btn  grey green-text text-lighten-5" href="{{  route('generador-de-formularios.index') }}">@lang('buttons.cancel')</a> {!! Form::close() !!}
+                        <a class="waves-effect  btn  grey green-text text-lighten-5" href="{{  route('FormGenerator.index') }}">@lang('buttons.cancel')</a> {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -111,7 +126,11 @@ document.getElementById("test").onclick = function() {
     // alert(document.getElementById(1).checked);
     isCountCheck("Check something");
 };
-
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        isCountCheck("Check something");
+    }
+});
 function isCountCheck(helperMsg) {
     var i, campos ={{ count($headerPlants) }},
         checks = 0;
