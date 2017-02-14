@@ -4,58 +4,66 @@
     <div class=" col-md-10 col-md-offset-1 text-capitalize">
         <div class="row">
             <div class="right ">
-                <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('catalog.index') }}">@lang('buttons.back')</a>
+
+            <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('HeaderPlants.index') }}">@lang('buttons.back')</a>
 
             </div>
         </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading  light-green lighten-1">
-                <h5>Crear Nueva Opcion</h5>
+                <h5>Crear Nuevo </h5>
             </div>
-{{-- podria poner un if exite cambiar hasta el form por el put --}}
-					{!! Form::open(['action'=>['CatalogController@store',1],'method' => 'post']) !!}
 
-<div class=" well">
+                    {!! Form::open(['action'=>['HeaderPlantsController@store'],'method' => 'post']) !!}
+<p></p>
+                        {!! Field::text('name',['autofocus']) !!}
+                        {!! Field::text('description',[]) !!}
+                        <div class="row">
+                            <div class="col-xs-2 "><p></p><p></p>
+                            Catalogo: </div>
+                            <div class="col-xs-1">
+                        {!! Field::checkbox('catalog_type','1',['label'=>"",]) !!}
+                            </div>
+                            <div class="col-xs-9">
+                        {!! Field::select('catalog_id',$catalogs,['label'=>"seleciona una Opcion", ]) !!}
+                            </div>
 
-                    <h6>Catalogo
+                        </div>
+
+<p></p>
+                        {!! Field::text('number',[]) !!}
+                        {!! Field::text('decimal',[]) !!}
 
 
-                    @if(request()->input('subId') <>null)
-<!-- {{ $catalo=catalogItemFindfirst(request()->input('subId')) }} -->
-
-
-                    {{ $catalo->name }}
-</h6>
-<div style="display:none">
-
-                            {!! Field::text('subId',request()->input('subId')) !!}
-                            {!! Field::text('name',$catalo->name,['label'=>'Nombre del Catalogo']) !!}
-                            {!! Field::text('code',(catalogItemFindLast($catalo->catalog_subId)),['label'=>'codigo','autofocus'=>'autofocus']) !!}
-</div>
-
-@else
-<div style="display:none">
-                        	{!! Field::text('subId',request()->input('last')+1) !!}
-</div>
-</h6>
-                    <hr>
-                            {!! Field::text('name',['label'=>'Nombre del Catalogo','autofocus'=>'autofocus']) !!}
-@endif
-</div>
-<div class=" well">
-<!-- {{ $texto=(isset($catalo))?"":"Primer" }} -->
-        <h6>{{ $texto }} Opcion</h6>
-                    <hr>
-
-                        {!! Field::text('description',['label'=>'Nombre de '.$texto.' Opcion','autofocus'=>'autofocus']) !!}
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
+                        <div id="salida"></div>
                     {!! Form::close() !!}
-
-</div>
 
         </div>
     </div>
 </div>
 
+@endsection
+@section('scripts')
+
+<script type="text/javascript">
+      $(document).ready(function() {
+$('#field_catalog_id').hide();
+
+  $('select').material_select();
+  });
+$('#catalog_type').click(function() {
+
+    if($('#field_catalog_id').is(":visible")){
+        $('#field_catalog_id').hide();
+    }else{
+        $('#field_catalog_id').show();
+
+    }
+
+});
+
+
+</script>
 @endsection

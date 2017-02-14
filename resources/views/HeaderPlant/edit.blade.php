@@ -12,7 +12,7 @@
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading  light-green lighten-1">
-                <h5>Editar Nuevo </h5>
+                <h5>Editar  </h5>
             </div>
 
 					{!! Form::open(['action'=>['HeaderPlantsController@update',$HeaderPlant->id],'method' => 'put']) !!}

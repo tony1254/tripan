@@ -3,7 +3,7 @@
 // use Illuminate\Foundation\Testing\WithoutMiddleware;
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class headersTest extends FeaturesTestCase {
+class HeadersTest extends FeaturesTestCase {
 	public function testIndexHeaderPlant() {
 		$this->actingAs($this->defaultUser()); //inicio sesion Default
 		$this->visit(route('HeaderPlants.index'));
@@ -30,13 +30,8 @@ class headersTest extends FeaturesTestCase {
 	public function testCreateHeaderPlant() {
 		$this->actingAs($this->defaultUser()); //inicio sesion Default
 		$this->visit(route('HeaderPlants.create'));
-		$this->see(trans('buttons.save'));
-	}
-	public function testEditHeaderPlant() {
-		$this->actingAs($this->defaultUser()); //inicio sesion Default
-		$this->visit(route('HeaderPlants.edit', 1));
-		$this->see('DAP');
-
+		$this->see(trans('validation.attributes.save'));
+		//IF
 		$name = "DOP";
 		$description = "variable muy extraña";
 
@@ -48,6 +43,34 @@ class headersTest extends FeaturesTestCase {
 			->check('catalog_type')
 			->select(1, 'catalog_id')
 			->press(trans('validation.attributes.save'));
+		//then
+		$this->seeInDatabase('headerPlants', [
+
+			'name' => $name,
+			'description' => $description,
+			'catalog_type' => $catalog_type,
+			'catalog_id' => $catalog_id,
+			'number' => 0,
+			'decimal' => 0,
+		]);
+	}
+	public function testEditHeaderPlant() {
+		$this->actingAs($this->defaultUser()); //inicio sesion Default
+		$this->visit(route('HeaderPlants.edit', 1));
+		$this->see('DAP');
+
+		$name = "DOP";
+		$description = "variable muy extraña";
+
+		$catalog_type = 1;
+		$catalog_id = 1;
+		//IF
+		$this->type($name, 'name')
+			->type($description, 'description')
+			->check('catalog_type')
+			->select(1, 'catalog_id')
+			->press(trans('validation.attributes.save'));
+		//THEN
 		$this->seeInDatabase('headerPlants', [
 			'id' => 1,
 			'name' => $name,

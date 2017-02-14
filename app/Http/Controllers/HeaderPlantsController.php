@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HeaderPlantsController extends Controller {
+	public function validation(Request $request) {
+		return $this->validate($request, [
+			'name' => 'required|max:10',
+			'description' => 'required|min:5|max:25',
+			'number' => 'integer',
+			'decimal' => 'integer',
+		]);
+
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -26,7 +35,14 @@ class HeaderPlantsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		$catalogs = Catalog::select(DB::raw('min(id) id,max(catalog_subId) as catalog_subId,max(name) as name'))->groupBy('catalog_subId')->get();
+		// dd($catalogs->toArray());
+		$array = [];
+		foreach ($catalogs as $key => $catalog) {
+			$array += [$catalog->catalog_subId => $catalog->name];
+		}
+		// dd($array);
+		return view('HeaderPlant.create')->with('catalogs', $array);
 	}
 
 	/**
@@ -36,7 +52,26 @@ class HeaderPlantsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		$this->validation($request);
+
+		$HeaderPlant = new HeaderPlants;
+		$HeaderPlant->name = $request->input('name');
+		$HeaderPlant->description = $request->input('description');
+		if ($request->input('catalog_type')) {
+			$HeaderPlant->catalog_type = $request->input('catalog_type');
+			$HeaderPlant->catalog_id = $request->input('catalog_id');
+			$HeaderPlant->number = 0;
+			$HeaderPlant->decimal = 0;
+		} else {
+			$HeaderPlant->catalog_type = false;
+			$HeaderPlant->catalog_id = 0;
+			// dd(empty($request->input('number')));
+			$HeaderPlant->number = (empty($request->input('number'))) ? 0 : $request->input('number');
+			$HeaderPlant->decimal = (empty($request->input('number'))) ? 0 : $request->input('decimal');
+		}
+		$HeaderPlant->save();
+		// dd($HeaderPlant);
+		return redirect()->route('HeaderPlants.index');
 	}
 
 	/**
@@ -56,6 +91,7 @@ class HeaderPlantsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(HeaderPlants $HeaderPlant) {
+
 		$catalogs = Catalog::select(DB::raw('min(id) id,max(catalog_subId) as catalog_subId,max(name) as name'))->groupBy('catalog_subId')->get();
 		// dd($catalogs->toArray());
 		$array = [];
@@ -75,7 +111,7 @@ class HeaderPlantsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, HeaderPlants $HeaderPlant) {
-
+		$this->validation($request);
 		$HeaderPlant->name = $request->input('name');
 		$HeaderPlant->description = $request->input('description');
 		if ($request->input('catalog_type')) {
