@@ -30,7 +30,8 @@
 		<h6> Opcion</h6>
 					<hr>
 
-                        {!! Field::text('description',$catalog->description,['label'=>'Nombre de Opcion']) !!}
+                        {!! Field::text('description',$catalog->description,['label'=>'Nombre de Opcion','autofocus','data-length'=>'20','maxlength'=>'20']) !!}
+
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
                     {!! Form::close() !!}
 
@@ -40,4 +41,13 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+<script type="text/javascript">
+  $(document).ready(function() {
+$('input').characterCounter();
+$('#input_text').characterCounter();
+        $('input#input_text, textarea#description').characterCounter();
+});
+</script>
 @endsection

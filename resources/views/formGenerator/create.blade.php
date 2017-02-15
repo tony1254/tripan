@@ -32,8 +32,61 @@
                             </div>
                         </div>
                         <p></p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            Encabezado
+                        </div>
+                    </div>
+
+   <div class="row">
+
+                            <div class="col-sm-6">
+                             <!-- {{ $seccion=0 }}
+                                    {{ $rows=0  }} -->
+
+
+                            @foreach ($titles as $key => $value)
+
+                            <div class=row>
+                                    <!-- {{ $rows++  }} -->
+
+                                    <div class="col-xs-3">
+                                        {{$value->name }}:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{$value->description }}
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <!-- Switch -->
+                                        <div class="switch" id="{{ $value->id }}">
+                                            <label>
+                                                <input name="{{ $value->id }}z" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (old($value->id))?"checked":"" }}>
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    </div >
+                                    @if($rows>=(($titles->count())/2))
+                                    <!-- {{ $rows=0  }} -->
+                                        </div>
+                                         <div class="col-sm-6">
+
+                                    @endif
+                            @endforeach
+                            </div>
+                        </div>
+
+
+                    <hr>
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            campos
+                        </div>
+                    </div>
 
                         <div class="row">
+
                             <div class="col-sm-6">
                              <!-- {{ $seccion=0 }}
                                     {{ $rows=0  }} -->
@@ -79,7 +132,7 @@
                                     </div>
                                     @endif
                                     </div >
-                                    @if($rows>12)
+                                    @if($rows>(($headerPlants->count()-7 )/2))
                                     <!-- {{ $rows=0  }} -->
                                         </div>
                                          <div class="col-sm-6">

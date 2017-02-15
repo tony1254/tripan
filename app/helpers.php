@@ -3,6 +3,7 @@ use App\Catalog;
 use App\HeaderPlants;
 use App\Menu;
 use App\Permission;
+use App\Title;
 use App\User;
 use Illuminate\Support\Facades\DB;
 /*
@@ -250,8 +251,8 @@ where
 			echo "</tr>";
 			echo "<tr>";
 			for ($i = 0; $i < $sections; $i++) {
-				echo "<td class='strech $color'>cal</td>";
-				echo "<td class='strech $color' colspan='4'>altura</td>";
+				echo "<td class='strech $color subSeccion'>cal</td>";
+				echo "<td class='strech $color subSeccion' colspan='4'>altura</td>";
 			}
 			echo "</tr>";
 			echo "<tr>";
@@ -313,6 +314,24 @@ function arrayOrs($request) {
 
 	return $texto;
 }
+function arrayTitle($request) {
+	$texto = [];
+	// dd($request, $request->all());
+	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));
+	$request = explode("', '", $request);
+	foreach ($request as $key => $value) {
+		if ((!is_numeric($value)) && (strpos($value, "z"))) {
+			$value = str_replace("z", "", $value);
+			// $texto .= " or id = " . $value;
+			$title = Title::findOrFail($value);
+			array_push($texto, $title->name);
+
+		}
+
+	}
+
+	return $texto;
+}
 function arrayOrsSubId($request) {
 	$texto = "";
 	// dd($request, $request->all());
@@ -341,7 +360,6 @@ function catalogArray($request) {
 		if (is_numeric($value)) {
 			array_push($array, getCatalog($value));
 		}
-
 	}
 	$catalogos = array_unique($array);
 	$catalogos = implode("', '", $catalogos);
@@ -350,9 +368,9 @@ function catalogArray($request) {
 where
 0
 ' . $ids);
-
 	return $headersPlants;
 }
+
 function headersGfmisArray() {
 	return [
 		"orden",
@@ -381,6 +399,6 @@ function headersGfmisArray() {
 }
 function headersIsOn($value = '', $form) {
 	$headerOld = explode("', '", $form->headers);
-	return array_search($value, $headerOld);
 
+	return array_search($value, $headerOld);
 }

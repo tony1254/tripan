@@ -42,8 +42,8 @@ class CatalogController extends Controller {
 	 */
 	public function store(Request $request) {
 		$this->validate($request, [
-			'name' => 'required|min:3|max:32',
-			'description' => 'required|min:3|max:25',
+			'name' => 'required|min:3|max:23',
+			'description' => 'required|min:3|max:20',
 		]);
 		Catalog::create([
 			'catalog_subId' => $request->input('subId'),
@@ -90,7 +90,7 @@ class CatalogController extends Controller {
 	 */
 	public function update(Request $request, Catalog $catalog) {
 		$this->validate($request, [
-			'description' => 'required|min:3|max:25',
+			'description' => 'required|min:3|max:23',
 		]);
 		$catalog->description = $request->input('description');
 		$catalog->save();

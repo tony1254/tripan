@@ -32,7 +32,59 @@
                                 </div>
                             </div>
                         </div>
-                        <p></p>
+ <p></p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            Encabezado
+                        </div>
+                    </div>
+
+   <div class="row">
+
+                            <div class="col-sm-6">
+                             <!-- {{ $seccion=0 }}
+                                    {{ $rows=0  }} -->
+
+
+                            @foreach ($titles as $key => $value)
+
+                            <div class=row>
+                                    <!-- {{ $rows++  }} -->
+
+                                    <div class="col-xs-3">
+                                        {{$value->name }}:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{$value->description }}
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <!-- Switch -->
+                                        <div class="switch" id="{{ $value->id }}">
+                                            <label>
+                                                <input name="{{ $value->id }}z" id="c{{ $value->id }}" type="checkbox" onclick=" " value="{{ true }}" {{ (headersIsOn(($value->id."z"),$form))?"checked":"" }}>
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    </div >
+                                    @if($rows>=(($titles->count())/2))
+                                    <!-- {{ $rows=0  }} -->
+                                        </div>
+                                         <div class="col-sm-6">
+
+                                    @endif
+                            @endforeach
+                            </div>
+                        </div>
+
+
+                    <hr>
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            campos
+                        </div>
+                    </div>
 
                         <div class="row">
                             <div class="col-sm-6">
@@ -92,7 +144,7 @@
                             </div>
                         </div>
                         {{-- {!! Field::text('name') !!} {!! Field::email('email') !!} {!! Field::password('password') !!} {!! Field::passwosrd('password_confirmation') !!} --}} {{-- {!! Form::button(trans('buttons.create'), ['class' => 'btn teal white-text waves-effect', 'type' =>'submit','name'=>'create']) !!} --}}
-                        <a id="test" class="btn teal white-text waves-effect">@lang('buttons.create')</a>
+                        <a id="test" class="btn teal white-text waves-effect">@lang('validation.attributes.save')</a>
                         <a class="waves-effect  btn  grey green-text text-lighten-5" href="{{  route('FormGenerator.index') }}">@lang('buttons.cancel')</a> {!! Form::close() !!}
                     </div>
                 </div>

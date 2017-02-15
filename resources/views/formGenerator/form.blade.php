@@ -40,10 +40,10 @@ a -->
                     </div>
     @endif
     <!-- {{ $catalogE=" text-center  grey lighten-2 " }} -->
-                    <div class="col-xs-2">
+                    <div class="col-down col-xs-1">
                         <table class="table-condensed encabezado">
                         <tr>
-                            <th class="catalogN {{ $catalogE }}" colspan="2">{{ $value->name }}</th>
+                            <th class="catalogNC {{ $catalogE }}" colspan="2">{{ $value->name }}</th>
                         </tr>
                             <tr>
                                 <th class='catalogN {{ $catalogE }}'>Codigo</th>
@@ -55,11 +55,11 @@ a -->
 
                     <tr>
                         <td class='catalogN text-center'>{{ $value->code }}</td>
-                        <td class="catalogD ">{{ $value->description }}</td>
+                        <td class="catalogD " nowrap>{{ $value->description }}</td>
 
                     </tr>
                     <!-- {{ $j++ }} -->
-                    @if($j>9)
+                    @if($j>(9))
                      <!-- {{ $foot=1 }}
                          {{ $header=1 }}
                          {{ $j=1 }}
@@ -97,6 +97,7 @@ a -->
        /* min-width: 15px;
            max-width: 15px; */
     width: 8%;
+    text-transform: capitalize;
 
 }
 
@@ -104,7 +105,7 @@ a -->
     /*width: 1%;*/
         width: 50px;
     min-width: 15px;
-    max-width: 1%;
+    max-width: 0.6%;
     overflow: hidden;
     /*text-overflow: ellipsis;*/
     /*white-space: pre;*/
@@ -126,20 +127,48 @@ width: 50px;
 
 
 }
+.encabezado>tbody>tr>th.catalogNC ,
 .encabezado>tbody>tr>th.catalogN ,
 .encabezado>tbody>tr>td.catalogN {
      border: 1px solid black;
     border-collapse: collapse;
-    width: 0.8%;
+    width: 0.4%;
+    font-size: 9px;
 }
 .encabezado>tbody>tr>th.catalogD ,
 .encabezado>tbody>tr>td.catalogD {
      border: 1px solid black;
     border-collapse: collapse;
     width:3%;
+    font-size: 9px;
 }
-.col-xs-2{
+
+.encabezado>tbody>tr>th.catalogD ,
+.encabezado>tbody>tr>th.catalogN {
+    font-size: 5px;
+
+}
+.table-condensed>tbody>tr>td.strech
+{
+    font-size: 9px;
+
+}
+.table-condensed>tbody>tr>td.strech.subSeccion,
+.encabezado>tbody>tr>th.catalogNC {
+    font-size: 8px;
+
+}
+
+.col-down{
     padding-right: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    width: 120px;
+}
+.col-down1{
+    padding-right: 0px;
+    margin-right: 0px;
+    width: 130px;
 }
 table {
     width: 0%;
@@ -147,14 +176,40 @@ table {
 .panel {
     margin: 0px;
 }
+.panel > .panel-heading, .panel.panel-default > .panel-heading {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    }
+.panel>.panel-body{
+    padding-top:  1px;
+}
+.space{
+margin-bottom: 2px;
+margin-top: 2px;
+
+    border-top: thick double #e0e0e0      ;
+    border-width: 1px;
+}
 </style>
-<p></p>
+<br>
 
 
     <div class="panel panel-default" id="sheet">
-        <div class="panel-heading text-center grey lighten-1">
-            <b>  Boleta de Formulario: {{$form->name}}        </b>
+        <div class="panel-heading text-left transparent">
+        <div class="row">
+            <div class="col-xs-4">
+                <IMG id="logo" SRC="{{ asset('/content/logo3.jpg')}}" WIDTH=85 HEIGHT=40>
+            </div>
+            <div class="col-xs-4 text-center">
+            <p></p>
+            <p></p>
+            <p></p>
+             Boleta de Formulario: {{$form->name}}
+            </div>
         </div>
+        </div>
+            <p class="space"></p>
+
         <div class="panel-body">
             <div class="">
                 <div class="col-xs-3">
@@ -213,7 +268,7 @@ table {
                         </tr>
                         <tr>
                             <th class="text-nowrap">Responsable</th>
-                            <td colspan="6">&nbsp;</td>
+                            <td colspan="12">&nbsp;</td>
                         </tr>
                         <tr>
                             <th class="text-nowrap">fecha</th>
@@ -230,20 +285,21 @@ table {
                 </div>
             </div>
             <div class="row">
-                @for($i=0;$i<0;$i++)
+
+                @foreach(arrayTitle($form->headers) as $name)
                 <div class="col-xs-3">
                     <table class="table-condensed encabezado">
                         <tr>
-                            <th class="text-nowrap">motivo de inventario
+                            <th class="text-nowrap">{{ $name }}
                             </th>
-                            {{ cols(3,2) }}
+                            {{ cols(4,2) }}
 
                         </tr>
                     </table>
                 </div>
-                @endfor
+                @endforeach
             </div>
-            <br>
+            <p class="space"></p>
             <div class="row">
                 <div class="col-xs-12">
                     <table class="table-condensed encabezado">
@@ -253,7 +309,39 @@ table {
 
                 </div>
             </div>
+
+
+    <!-- {{ $catalogE=" text-center  grey lighten-2 " }} -->
+                    <div class="col-down1 col-xs-1">
+                        <table class="table-condensed encabezado">
+                        <tr>
+                            <td class="catalogNC {{ $catalogE }}" colspan="1">No. Parcelas por Estrato</td>
+                            <td class="catalogNC {{ $catalogE }}" colspan="1">No. Alturas por Parcela</td>
+                        </tr>
+
+
+                    <tr>
+                        <td class='catalogD text-center'>3</td>
+                        <td class="catalogD text-center" nowrap>10</td>
+
+                    </tr>
+                    <tr>
+                        <td class='catalogD text-center'>4</td>
+                        <td class="catalogD text-center" nowrap>8</td>
+                    </tr>
+                    <tr>
+                        <td class='catalogD text-center'>5</td>
+                        <td class="catalogD text-center" nowrap>6</td>
+                    </tr>
+                    <tr>
+                        <td class='catalogD text-center'>>5</td>
+                        <td class="catalogD text-center" nowrap>5</td>
+                    </tr>
+
+                    </table>
+                </div>
                 @yield('catalogs')
+
 
         </div>
     </div>

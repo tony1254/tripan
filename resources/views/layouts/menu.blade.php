@@ -8,6 +8,14 @@
           <li class="{{ (findPermission(14))? : " disabled " }} ">
             <a href="{{ (findPermission(14))? url('/catalog'): " # " }}">{{ findMenuName(14) }}</a>
         </li>
+        </li>
+          <li class="{{ (findPermission(19))? : " disabled " }} ">
+            <a href="{{ (findPermission(19))? url('/HeaderPlants'): " # " }}">{{ findMenuName(19) }}</a>
+        </li>
+        </li>
+          <li class="{{ (findPermission(24))? : " disabled " }} ">
+            <a href="{{ (findPermission(24))? url('/title'): " # " }}">{{ findMenuName(24) }}</a>
+        </li>
 
         <li><a href="#">Another action</a></li>
         <li><a href="#">Something else here sd dsa dsa dsa</a></li>
@@ -15,6 +23,23 @@
         <li><a href="#">Separated link</a></li>
         <li role="separator" class="divider"></li>
         <li><a href="#">One more separated link</a></li>
+    </ul>
+</li>
+<li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; test">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+
+          <li class="{{ (findPermission(14))? : " disabled " }} ">
+            <a href="{{ (findPermission(14))? url('/catalog'): " # " }}">{{ findMenuName(14) }}</a>
+        </li>
+        </li>
+          <li class="{{ (findPermission(19))? : " disabled " }} ">
+            <a href="{{ (findPermission(19))? url('/HeaderPlants'): " # " }}">{{ findMenuName(19) }}</a>
+        </li>
+        </li>
+          <li class="{{ (findPermission(24))? : " disabled " }} ">
+            <a href="{{ (findPermission(24))? url('/title'): " # " }}">{{ findMenuName(24) }}</a>
+        </li>
     </ul>
 </li>
 <li class="tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; Importar"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-import" ></span></a>

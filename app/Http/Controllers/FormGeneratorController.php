@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forms;
 use App\HeaderPlants;
+use App\Title;
 use Illuminate\Http\Request;
 
 class FormGeneratorController extends Controller {
@@ -32,6 +33,7 @@ class FormGeneratorController extends Controller {
 		$form->userCreator_id = currentUser()->id;
 		$form->userModifier_id = currentUser()->id;
 		$form->save();
+		\Alert::success("Cambios Realizados Con exito.");
 
 		// dd($request->all(), $form);
 		return redirect()->route('FormGenerator.index');
@@ -57,6 +59,7 @@ class FormGeneratorController extends Controller {
 		$FormGenerator->userModifier_id = currentUser()->id;
 		$FormGenerator->save();
 		// auth()->user()->formsModifier()->save($FormGenerator);
+		\Alert::success("Cambios Realizados Con exito.");
 
 		return redirect()->route('FormGenerator.index');
 
@@ -64,11 +67,10 @@ class FormGeneratorController extends Controller {
 	}
 	public function create() {
 
-		return view('formGenerator.create')->with('headerPlants', HeaderPlants::all());
+		return view('formGenerator.create')->with('headerPlants', HeaderPlants::all())->with('titles', Title::all());
 	}
 	public function show(Forms $FormGenerator) {
 		// dd($FormGenerator->toArray());
-
 		// dd(catalogMaker($FormGenerator->headers));
 		if (empty($FormGenerator->name)) {
 			return redirect()->route('FormGenerator.index');
@@ -80,7 +82,7 @@ class FormGeneratorController extends Controller {
 		if (empty($FormGenerator->name)) {
 			return redirect()->route('FormGenerator.index');
 		}
-		return view('formGenerator.edit')->with('form', $FormGenerator)->with('headerPlants', HeaderPlants::all());
+		return view('formGenerator.edit')->with('form', $FormGenerator)->with('headerPlants', HeaderPlants::all())->with('titles', Title::all());
 	}
 	public function destroy(Forms $FormGenerator) {
 		\Alert::success(trans('alerts.success'));

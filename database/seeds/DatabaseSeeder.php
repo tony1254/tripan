@@ -103,26 +103,51 @@ class DatabaseSeeder extends Seeder {
 
 		$menu = new Menu;
 		$menu->subId = 0;
-		$menu->name = "HeaderPlants";
+		$menu->name = "Campos";
 		$menu->save();
 
 		$menu = new Menu;
-		$menu->subId = 14;
+		$menu->subId = 19;
 		$menu->name = "Ver";
 		$menu->save();
 
 		$menu = new Menu;
-		$menu->subId = 14;
+		$menu->subId = 19;
 		$menu->name = "Crear";
 		$menu->save();
 
 		$menu = new Menu;
-		$menu->subId = 14;
+		$menu->subId = 19;
 		$menu->name = "Actulizar";
 		$menu->save();
 
 		$menu = new Menu;
-		$menu->subId = 14;
+		$menu->subId = 19;
+		$menu->name = "Eliminar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 0;
+		$menu->name = "Titulos";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 24;
+		$menu->name = "Ver";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 24;
+		$menu->name = "Crear";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 24;
+		$menu->name = "Actulizar";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->subId = 24;
 		$menu->name = "Eliminar";
 		$menu->save();
 
@@ -153,8 +178,8 @@ class DatabaseSeeder extends Seeder {
 		emptyPermissions(1);
 		DB::table('headerPlants')->insert(
 			[
-				['name' => 'DAP', 'description' => 'Diametro a la altura del pecho', 'catalog_type' => '0', 'number' => '2', 'decimal' => '1', 'catalog_id' => '0'],
-				['name' => 'HT', 'description' => 'Altura Total', 'catalog_type' => '0', 'number' => '2', 'decimal' => '1', 'catalog_id' => '0'],
+				['name' => 'DAP', 'description' => 'Diametro a la altura del pecho', 'catalog_type' => '0', 'number' => '2', 'decimal' => '2', 'catalog_id' => '0'],
+				['name' => 'HT', 'description' => 'Altura Total', 'catalog_type' => '0', 'number' => '2', 'decimal' => '2', 'catalog_id' => '0'],
 				['name' => 'Hcom', 'description' => 'Altura comercial', 'catalog_type' => '0', 'number' => '2', 'decimal' => '1', 'catalog_id' => '0'],
 				['name' => 'S1C', 'description' => 'calidad de la seccion 1', 'catalog_type' => '1', 'number' => '0', 'decimal' => '0', 'catalog_id' => '1'],
 				['name' => 'S1Hs', 'description' => 'altura de la seccion 1', 'catalog_type' => '0', 'number' => '2', 'decimal' => '1', 'catalog_id' => '0'],
@@ -213,6 +238,14 @@ class DatabaseSeeder extends Seeder {
 			['catalog_subId' => '4', 'code' => '12', 'name' => 'patogenos', 'description' => 'Gallina ciega'],
 
 		]);
-
+		DB::table('titles')->insert(
+			[
+				['name' => 'Bloque', 'description' => 'Bloque del suelo'],
+				['name' => 'Pendiente', 'description' => 'Pendiente del suelo'],
+				['name' => 'Esposición', 'description' => 'Esposición del suelo'],
+				['name' => 'Sotobosque Ht', 'description' => 'Altura del sotobosque'],
+				['name' => 'Sotobosque Cober', 'description' => 'Cobertura del sotobosque'],
+				['name' => 'Pedregosidad', 'description' => 'Porcentaje de Pedregosidad'],
+			]);
 	}
 }

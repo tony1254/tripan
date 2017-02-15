@@ -28,6 +28,13 @@ class FormGeneratorTest extends FeaturesTestCase {
 		$this->visit('/FormGenerator/1/edit')
 			->see($this->defaultUser->name)
 			->see('unico')
+			->see(trans('validation.attributes.save'))
+		;
+	}
+	public function testSeeCreateFormGenerator() {
+		$this->actingAs($this->defaultUser());
+		$this->visit('/FormGenerator/create')
+			->see($this->defaultUser->name)
 			->see(trans('buttons.create'))
 		;
 	}

@@ -40,7 +40,7 @@
 </div>
 </h6>
                     <hr>
-                            {!! Field::text('name',['label'=>'Nombre del Catalogo','autofocus'=>'autofocus']) !!}
+                            {!! Field::text('name',['label'=>'Nombre del Catalogo','autofocus'=>'autofocus','maxlength'=>'23']) !!}
 @endif
 </div>
 <div class=" well">
@@ -48,7 +48,7 @@
         <h6>{{ $texto }} Opcion</h6>
                     <hr>
 
-                        {!! Field::text('description',['label'=>'Nombre de '.$texto.' Opcion','autofocus'=>'autofocus']) !!}
+                        {!! Field::text('description',['label'=>'Nombre de '.$texto.' Opcion','autofocus'=>'autofocus','maxlength'=>'20']) !!}
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
                     {!! Form::close() !!}
 
