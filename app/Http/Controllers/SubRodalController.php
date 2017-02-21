@@ -34,11 +34,8 @@ class SubRodalController extends Controller {
 	 */
 	public function create() {
 		$countries = Country::all();
-		$array = [];
-		foreach ($countries as $key => $country) {
-			$array += [$country->id => $country->name];
-		}
-		return view('subRodal.create')->with('countries', $array);
+
+		return view('subRodal.create')->with('countries', $countries);
 
 	}
 

@@ -36,7 +36,7 @@
   </div>
 <div class="row ">
                 <div class="col-sm-2 ">{!! Field::text('objectid',['autofocus','placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-3 ">{!! Field::select('country',$countries,[]) !!}</div>
+                <div class="col-sm-3 ">{!! Field::text('country',[]) !!}</div>
                 <div class="col-sm-3">{!! Field::text('fund',['placeholder'=>"Aaaa"]) !!}</div>
                 <div class="col-sm-1">{!! Field::text('property',['placeholder'=>"0"]) !!}</div>
                 <div class="col-sm-1">{!! Field::text('rodal',['placeholder'=>"0"]) !!}</div>
@@ -87,7 +87,7 @@
                     $('#country').autocomplete({
     data: {
       @foreach ($countries as $element)
-      "{{ $element }}": {{ url('flags/'.$element.'.jpg') }} ,
+      "{{ $element->name }}": {{ url('flags/'.$element->iso2.'.jpg') }} ,
 
       @endforeach
 
