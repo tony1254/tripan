@@ -3,22 +3,28 @@
 <div class="container">
 
 <div class=" col-md-10 col-md-offset-1 text-capitalize">
-    <div class="row">
-          <div class="right ">
-            <button class="waves-effect  btn  green green-text text-lighten-5" onclick="window.location='{{ route('HeaderPlants.create') }}'">@lang('buttons.create')</button>
-        </div>
-    </div>
+
     <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading  light-green lighten-1">    <h5>
+  <div class="panel-heading  light-green lighten-1">
+<div class="row">
+                <div class="col-xs-6">
+   <h5>
     Nombres de Columnas
-    </h5></div>
+    </h5>
+                </div>
+                <div class="col-xs-6 text-right right">
+            <button class="waves-effect  btn  green green-text text-lighten-5" onclick="window.location='{{ route('HeaderPlants.create') }}'">@lang('buttons.create')</button>
+                </div>
+            </div>
+    </div>
     <div class=" table-responsive">
         <table class="table table-condensed table-hover highlight ">
             <thead>
                 <tr>
                     <th data-field="price">No.</th>
                     <th data-field="id">@lang('validation.attributes.name')</th>
+                    <th data-field="id">@lang('validation.attributes.alias')</th>
                     <th data-field="id">@lang('validation.attributes.description')</th>
                     <th data-field="id">Tipo</th>
                     <th data-field="name">Actions</th>
@@ -32,6 +38,7 @@
 
                     <td>{{ $HeaderPlant->id }}</td>
                     <td>{{ $HeaderPlant->name }}</td>
+                    <td>{{ $HeaderPlant->alias }}</td>
                     <td>{{ $HeaderPlant->description }}</td>
                     <td>
 

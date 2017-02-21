@@ -12,7 +12,7 @@ return [
 		    | such as the size rules. Feel free to tweak each of these messages.
 		    |
 	*/
-
+	'alpha_spaces' => ':attribute no debe contener espacios.',
 	'accepted' => ':attribute debe ser aceptado.',
 	'active_url' => ':attribute no es una URL válida.',
 	'after' => ':attribute debe ser una fecha posterior a :date.',
@@ -115,6 +115,7 @@ return [
 	*/
 
 	'attributes' => [
+		'alias' => 'alias',
 		'name' => 'nombre',
 		'username' => 'usuario',
 		'email' => 'correo electrónico',

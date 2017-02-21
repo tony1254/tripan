@@ -1,15 +1,20 @@
 @section('title')Generador de Formularios @endsection
 @extends('layouts.app') @section('content')
 <div class="container">
-    <div class="row">
-                    <div class="right">
 
-            <a class="waves-effect  btn  green green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Nuevo" onclick="window.location='{{ route('FormGenerator.create') }}'" {{ ((findPermission(11)))? "": "disabled" }}>@lang('buttons.create')</a>
-        </div>
-    </div>
     <div class="row text-capitalize">
         <div class="panel panel-default">
-            <div class="panel-heading text-center"> @lang('alerts.custom.forms')</div>
+            <div class="panel-heading ">
+                <div class="row">
+                <div class="col-xs-6">
+                    <h5>@lang('alerts.custom.forms')</h5>
+                </div>
+                <div class="col-xs-6 text-right right">
+                    <a class="waves-effect  btn  green green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Nuevo" onclick="window.location='{{ route('FormGenerator.create') }}'" {{ ((findPermission(11)))? "": "disabled" }}>@lang('buttons.create')</a>
+
+                </div>
+            </div>
+            </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">

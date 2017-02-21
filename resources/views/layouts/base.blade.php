@@ -20,6 +20,7 @@
 
 		@yield('startScripts')
         @yield('scripts')
+        @yield('endScripts')
 
 </body>
 </html>

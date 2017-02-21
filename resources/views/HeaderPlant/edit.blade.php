@@ -2,22 +2,24 @@
 @extends('layouts.app') @section('content')
 <div class="container">
     <div class=" col-md-10 col-md-offset-1 text-capitalize">
-        <div class="row">
-            <div class="right ">
 
-            <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('HeaderPlants.index') }}">@lang('buttons.back')</a>
-
-            </div>
-        </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading  light-green lighten-1">
-                <h5>Editar  </h5>
+                <div class="row">
+                <div class="col-xs-6">
+                    <h5>Editar  </h5>
+                </div>
+                <div class="col-xs-6 text-right right">
+                    <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="{{  route('HeaderPlants.index') }}">@lang('buttons.back')</a>
+                </div>
+            </div>
             </div>
 
 					{!! Form::open(['action'=>['HeaderPlantsController@update',$HeaderPlant->id],'method' => 'put']) !!}
 <p></p>
                         {!! Field::text('name',$HeaderPlant->name,[]) !!}
+                        {!! Field::text('alias',$HeaderPlant->alias,[]) !!}
                         {!! Field::text('description',$HeaderPlant->description,[]) !!}
                         <div class="row">
                             <div class="col-xs-2 "><p></p><p></p>
@@ -32,8 +34,8 @@
                         </div>
 
 <p></p>
-                        {!! Field::text('number',$HeaderPlant->number,[]) !!}
-                        {!! Field::text('decimal',$HeaderPlant->decimal,[]) !!}
+                        {!! Field::number('number',$HeaderPlant->number,['MAX'=>'4']) !!}
+                        {!! Field::number('decimal',$HeaderPlant->decimal,['MAX'=>'4']) !!}
 
 
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
@@ -50,10 +52,10 @@
 <script type="text/javascript">
       $(document).ready(function() {
 $('#field_catalog_id').hide();
-if({{ $HeaderPlant->catalog_type }}){
-$('#field_catalog_id').show();
-
+if ($('#catalog_type').prop('checked')) {
+    $('#field_catalog_id').show();
 }
+
   $('select').material_select();
   });
 $('#catalog_type').click(function() {

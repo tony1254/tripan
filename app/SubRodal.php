@@ -29,7 +29,7 @@ class SubRodal extends Model {
 		'surface',
 		'plantation_date',
 		'supervisor',
-		'fores_guard',
+		'forest_guard',
 		'raleo_date',
 		'pruning_date', //poda
 		'pruning_density', //densidad

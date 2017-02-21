@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Permission;
+use Illuminate\Support\Facades\Schema;
 
 // use Illuminate\Http\Request;
 
@@ -30,6 +31,10 @@ class HomeController extends Controller {
 		*/
 		// $a = array(1 => "red", "b" => "green", "c" => "blue");
 		// echo array_search("red", $a);
+		Schema::table('users', function ($table) {
+			$table->renameColumn('tony', 'to'); //cambiar el nombre
+			// $table->string('tony');//para cerar nueva columna
+		});
 		return view('auth.controlPanel.permission.index')->with('permissions', Permission::all());
 		return view('auth.controlPanel.index');
 	}
@@ -40,6 +45,7 @@ class HomeController extends Controller {
 	 */
 	public function index() {
 		// return ($this->prueba());
+		//
 		return view('home');
 	}
 	// public function prueba($value = '') {

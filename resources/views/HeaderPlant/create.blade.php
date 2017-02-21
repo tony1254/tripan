@@ -18,6 +18,7 @@
                     {!! Form::open(['action'=>['HeaderPlantsController@store'],'method' => 'post']) !!}
 <p></p>
                         {!! Field::text('name',['autofocus']) !!}
+                        {!! Field::text('alias',['autofocus']) !!}
                         {!! Field::text('description',[]) !!}
                         <div class="row">
                             <div class="col-xs-2 "><p></p><p></p>
@@ -32,8 +33,8 @@
                         </div>
 
 <p></p>
-                        {!! Field::text('number',[]) !!}
-                        {!! Field::text('decimal',[]) !!}
+                        {!! Field::number('number',['MAX'=>'4']) !!}
+                        {!! Field::number('decimal',['MAX'=>'4']) !!}
 
 
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
@@ -49,7 +50,13 @@
 
 <script type="text/javascript">
       $(document).ready(function() {
+// alert($("select option:selected").val());
+// $("select value:selected").remove();
+
 $('#field_catalog_id').hide();
+if ($('#catalog_type').prop('checked')) {
+    $('#field_catalog_id').show();
+}
 
   $('select').material_select();
   });

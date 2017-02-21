@@ -12,7 +12,7 @@ class HeaderPlants extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'description', 'catalog_type', 'catalog_id', 'state',
+		'name', 'alias', 'description', 'catalog_type', 'catalog_id', 'state',
 	];
 	public function isCatalog() {
 		return ($this->catlog_type == 1) ? true : false;

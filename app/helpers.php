@@ -1,5 +1,6 @@
 <?php
 use App\Catalog;
+use App\Forms;
 use App\HeaderPlants;
 use App\Menu;
 use App\Permission;
@@ -32,6 +33,7 @@ function catalogItemFindLast($value = '') {
  * @return App\Permission Todos los Permisos del usuario logeado Actual
  */
 function itemsMenu() {
+
 	return $items = Permission::where('user_id', currentUser()->id)->get();
 }
 
@@ -44,6 +46,7 @@ function findPermission($idMenu) {
 
 	$value = Session::get('menu');
 	// $permission = $permissions->where('idMenu', 2)->first()->state;
+	// dd($value);
 	$value = $value->where('menu_id', $idMenu)->first();
 	return (isset($value)) ? $value->state : false;
 }
@@ -225,7 +228,7 @@ where
 
 			echo "<td class='$color numero' rowspan='2'>No.</td>";
 			foreach ($headersPlants as $key => $xx) {
-				$retVal = $xx->name;
+				$retVal = $xx->alias;
 
 				//si es parte seccion
 
@@ -288,6 +291,11 @@ where
 		}
 	}
 }
+/**
+ * COloca el nombre de seccion y subsecciones
+ * @param  string $value [description]
+ * @return [type]        [description]
+ */
 function seccionName($value = '') {
 	$salida = "";
 	$salida .= (($value == 4)) ? ($value - 1) . "-2" : "";
@@ -296,6 +304,11 @@ function seccionName($value = '') {
 	$salida .= (($value == 4) || ($value == 5) || ($value == 6)) ? "" : $value;
 	return $salida;
 }
+/**
+ * forma un arreglo de strings para colocarlo al final de una consulta select
+ * @param  [type] $request [description]
+ * @return [type]          [description]
+ */
 function arrayOrs($request) {
 	$texto = "";
 	// dd($request, $request->all());
@@ -314,6 +327,11 @@ function arrayOrs($request) {
 
 	return $texto;
 }
+/**
+ * Genera un array con los nombres d elos titulos
+ * @param  [type] $request [description]
+ * @return [array]          [description]
+ */
 function arrayTitle($request) {
 	$texto = [];
 	// dd($request, $request->all());
@@ -324,7 +342,7 @@ function arrayTitle($request) {
 			$value = str_replace("z", "", $value);
 			// $texto .= " or id = " . $value;
 			$title = Title::findOrFail($value);
-			array_push($texto, $title->name);
+			array_push($texto, $title->description);
 
 		}
 
@@ -332,6 +350,37 @@ function arrayTitle($request) {
 
 	return $texto;
 }
+/**
+ * genera un array con los nombres de los campos que esten activos en el formulario
+ * @param  [integer] $form_id el aid del formulario
+ * @return [array]          [description]
+ */
+function arrayHeaderPlant($form_id) {
+	$texto = [];
+	$form = Forms::findOrFail($form_id);
+	$request = $form->headers;
+	// dd($request, $request->all());
+	// dd($request->all(), $request->input(6, 'default'), $request->has('8'));
+	$request = explode("', '", $request);
+	foreach ($request as $key => $value) {
+		if ((is_numeric($value)) && (!strpos($value, "z"))) {
+			// $value = str_replace("z", "", $value);
+			// $texto .= " or id = " . $value;
+			$title = HeaderPlants::findOrFail($value);
+
+			array_push($texto, $title);
+
+		}
+
+	}
+
+	return $texto;
+}
+/**
+ * genera un string con los ors que se le colocaria al final de una consulta select
+ * @param  [type] $request [description]
+ * @return [type]          [description]
+ */
 function arrayOrsSubId($request) {
 	$texto = "";
 	// dd($request, $request->all());
@@ -353,6 +402,11 @@ function arrayOrsSubId($request) {
 function getCatalog($value = '') {
 	return HeaderPlants::findOrFail($value)->catalog_id;
 }
+/**
+ * genera una consulta en catalogs con el request
+ * @param  [type] $request [description]
+ * @return [type]          [description]
+ */
 function catalogArray($request) {
 	$array = [];
 	$request = explode("', '", $request);
@@ -397,8 +451,22 @@ function headersGfmisArray() {
 		"clon", //porcentage de clon del inventario
 	];
 }
+/**
+ * saber cuales swich en la vista create de formularios estan activos
+ * @param  string $value [description]
+ * @param  [type] $form  [description]
+ * @return [type]        [description]
+ */
 function headersIsOn($value = '', $form) {
 	$headerOld = explode("', '", $form->headers);
 
 	return array_search($value, $headerOld);
+}
+function inputMaxForm($value = '') {
+	$max = 50;
+	if ($value->catalog_type) {
+		$max = Catalog::where('catalog_subId', $value->catalog_id)->max("code");
+	}
+	return $max;
+
 }

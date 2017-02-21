@@ -162,7 +162,7 @@ width: 50px;
 .col-down{
     padding-right: 0px;
     margin-right: 0px;
-    padding-left: 0px;
+    padding-left: 5px;
     width: 120px;
 }
 .col-down1{
@@ -206,6 +206,22 @@ margin-top: 2px;
             <p></p>
              Boleta de Formulario: {{$form->name}}
             </div>
+            <div class="col-xs-4 text-right">
+            <p></p>
+            <p></p>
+            <p></p>
+
+<div class="row right">
+
+                 <table class="table-condensed encabezado" style="font-size: 10px;">
+                     <tr>
+                         <th class="text-right">Boleta No.:</th>
+                         <td class="text-right" style="font-size: 12px;"> {{$form->id}}</td>
+                     </tr>
+                 </table>
+</div>
+
+            </div>
         </div>
         </div>
             <p class="space"></p>
@@ -214,10 +230,10 @@ margin-top: 2px;
             <div class="">
                 <div class="col-xs-3">
                     <table class="  table-condensed encabezado">
-                        <tr>
+                        <!-- <tr>
                             <th class="text-nowrap" width="60px">motivo del inventario</th>
-                            {{ cols(3) }}
-                        </tr>
+                            {{ cols(1,3) }}
+                        </tr> al momento del revisado se llenara este campo -->
                         <tr>
                             <th class="text-nowrap">País</th>
                             {{ cols(3) }}
@@ -230,10 +246,6 @@ margin-top: 2px;
                             <th class="text-nowrap">Finca(predio)</th>
                             {{ cols(3) }}
                         </tr>
-                    </table>
-                </div>
-                <div class="col-xs-3">
-                    <table class="  table-condensed encabezado">
                         <tr>
                             <th class="text-nowrap">rodal</th>
                             {{ cols(3) }}
@@ -242,38 +254,38 @@ margin-top: 2px;
                             <th class="text-nowrap">subrodal (Estrato)</th>
                             {{ cols(3) }}
                         </tr>
-                        <tr>
-                            <th class="text-nowrap">Lote</th>
-                            {{ cols(3) }}
-                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-3">
+                    <table class="  table-condensed encabezado">
+
                         <tr>
                             <th class="text-nowrap">año de plantacion</th>
                             {{ cols(4) }}
                         </tr>
+
                         <tr>
-                            <th class="text-nowrap">motivo de inventario</th>
+                            <th class="text-nowrap">Parcela No.</th>
                             {{ cols(3) }}
+                        </tr>
+                        <tr>
+                            <th class="text-nowrap">fecha</th>
+                            {{ cols(3) }}
+                        </tr>
+                        <tr>
+                            <th class="text-nowrap">sup(m2)Parcela</th>
+                            {{ cols(3) }}
+                        </tr>
+                        <tr>
+                            <th class="text-nowrap">Responsable</th>
+                            {{ cols(1,2) }}
+
+                            {{-- <td colspan="12">&nbsp;</td> --}}
                         </tr>
                     </table>
                 </div>
                 <div class="col-xs-3">
                     <table class="  table-condensed encabezado">
-                        <tr>
-                            <th class="text-nowrap">Parcela No.</th>
-                            {{ cols(3,2) }}
-                        </tr>
-                        <tr>
-                            <th class="text-nowrap">sup(m2)Parcela</th>
-                            {{ cols(3,2) }}
-                        </tr>
-                        <tr>
-                            <th class="text-nowrap">Responsable</th>
-                            <td colspan="12">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th class="text-nowrap">fecha</th>
-                            {{ cols(3,'2%') }}
-                        </tr>
                         <tr>
                             <th rowspan="2"="2" class="text-nowrap">UTM wgs84 z15</th>
                             {{ cols(6) }}
@@ -292,7 +304,7 @@ margin-top: 2px;
                         <tr>
                             <th class="text-nowrap">{{ $name }}
                             </th>
-                            {{ cols(4,2) }}
+                            {{ cols(6,2) }}
 
                         </tr>
                     </table>
@@ -341,8 +353,6 @@ margin-top: 2px;
                     </table>
                 </div>
                 @yield('catalogs')
-
-
         </div>
     </div>
 

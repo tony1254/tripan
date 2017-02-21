@@ -42,15 +42,17 @@ class GfmisController extends Controller {
 			// dd($reader->get()[2]->objectid);
 			$this->validacion($reader->get());
 			$rows = 0;
+			// dd($reader->get()[0]);
 			foreach ($reader->get() as $value) {
 				// echo (var_dump($value->orden));
-				if ($value->orden) {
+				if ($value->objectid) {
 					// dd($value);
 
 					$rows++;
 					SubRodal::updateOrCreate(
-						['objectid' => $value->objectid],
+						['id' => $value->orden],
 						[
+							'objectid' => $value->objectid,
 							'country' => $value->pais,
 							'fund' => $value->fondo,
 							'property' => $value->finca,

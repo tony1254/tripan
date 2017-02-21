@@ -22,7 +22,14 @@
         <div class="row"    >
             <div class="panel panel-primary">
                 <div class="panel-heading indigo accent-2">
-                    Subir Archivos
+                    <div class="row">
+                <div class="col-xs-6">
+                    <h5>Subir Archivos</h5>
+                </div>
+                <div class="col-xs-6 text-right right">
+                    <a class="waves-effect btn btn-floating  red green-text text-lighten-5 tooltipped" data-position="bottom" data-delay="0" data-tooltip="Regresar" href="javascript:history.back()">@lang('buttons.back')</a>
+                </div>
+            </div>
                 </div>
                 <div class="panel-body">
                 <div class="row text-center">

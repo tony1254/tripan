@@ -10,7 +10,7 @@
         <h3 class="panel-title">Columnas de Importacion
 
 
-<button class=" waves-effect waves-light btn btn-flat indigo accent-3 " onclick="copyToClipboard('#table')">Copiar </button>
+<a href="\content/formats/FormatGFMIS.xlsx" class=" waves-effect waves-light btn btn-flat indigo accent-3 white-text" ><i class="material-icons">file_download</i> Descargar </a>
 
         </h3>
     </div>
@@ -20,7 +20,7 @@
                 <tr>
                     @foreach(headersGfmisArray() as $header)
                     <td>
-                    {{   ($header==="orden") ? "*".$header : "".$header }}
+                    {{   ($header==="orden") ? "".$header : "".$header }}
                     </td>
                     @endforeach
                 </tr>
@@ -30,7 +30,7 @@
 </div>
 <input style="display:none" id="table" type="text" value="
 @foreach(headersGfmisArray() as $header)
-{{   ($header==="orden") ? "*".$header."  " : "".$header."  " }}
+{{   ($header==="orden") ? "".$header."  " : "".$header."  " }}
 @endforeach
 ">
 <style type="text/css">

@@ -47,6 +47,7 @@
 
 
                             @foreach ($titles as $key => $value)
+ @continue($value->id<=13)
 
                             <div class=row>
                                     <!-- {{ $rows++  }} -->
@@ -68,7 +69,7 @@
                                     </div>
 
                                     </div >
-                                    @if($rows>=(($titles->count())/2))
+                                    @if($rows>=(($titles->count()-13)/2))
                                     <!-- {{ $rows=0  }} -->
                                         </div>
                                          <div class="col-sm-6">
@@ -94,7 +95,10 @@
                                      -->
 
 
-                            @foreach ($headerPlants as $key => $value) @if(isAltura($value->id)) @continue @endif
+                            @foreach ($headerPlants as $key => $value)
+                                @continue($value->id<1)
+
+                            @if(isAltura($value->id)) @continue @endif
                             <div class=row>
                                     @if(isCalidad($value->id))
                                     <!-- {{ $rows++  }} -->
@@ -134,7 +138,7 @@
                                     </div>
                                     @endif
                                     </div >
-                                    @if($rows>12)
+                                    @if($rows>(($headerPlants->count()-7-1 )/2))
                                     <!-- {{ $rows=0  }} -->
                                         </div>
                                          <div class="col-sm-6">

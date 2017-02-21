@@ -2,6 +2,7 @@
 
 // use Illuminate\Foundation\Testing\WithoutMiddleware;
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\HeaderPlants;
 
 class HeadersTest extends FeaturesTestCase {
 	public function testIndexHeaderPlant() {
@@ -33,12 +34,14 @@ class HeadersTest extends FeaturesTestCase {
 		$this->see(trans('validation.attributes.save'));
 		//IF
 		$name = "DOP";
+		$alias = "DOP";
 		$description = "variable muy extraña";
 
 		$catalog_type = 1;
 		$catalog_id = 1;
 
 		$this->type($name, 'name')
+			->type($alias, 'alias')
 			->type($description, 'description')
 			->check('catalog_type')
 			->select(1, 'catalog_id')
@@ -47,33 +50,43 @@ class HeadersTest extends FeaturesTestCase {
 		$this->seeInDatabase('headerPlants', [
 
 			'name' => $name,
+			'alias' => $alias,
 			'description' => $description,
 			'catalog_type' => $catalog_type,
 			'catalog_id' => $catalog_id,
 			'number' => 0,
 			'decimal' => 0,
 		]);
+		return $this;
 	}
 	public function testEditHeaderPlant() {
-		$this->actingAs($this->defaultUser()); //inicio sesion Default
-		$this->visit(route('HeaderPlants.edit', 1));
-		$this->see('DAP');
-
+		$this->testCreateHeaderPlant();
 		$name = "DOP";
+		$alias = "DOP";
 		$description = "variable muy extraña";
 
 		$catalog_type = 1;
 		$catalog_id = 1;
+
+		$headerPlant = HeaderPlants::where('name', $name)
+			->where('alias', $alias)
+			->where('description', $description)
+			->first();
+		$this->actingAs($this->defaultUser()); //inicio sesion Default
+		$this->visit(route('HeaderPlants.edit', $headerPlant->id));
+		$this->see($headerPlant->name);
 		//IF
 		$this->type($name, 'name')
+			->type($alias, 'alias')
 			->type($description, 'description')
 			->check('catalog_type')
 			->select(1, 'catalog_id')
 			->press(trans('validation.attributes.save'));
 		//THEN
 		$this->seeInDatabase('headerPlants', [
-			'id' => 1,
+			'id' => $headerPlant->id,
 			'name' => $name,
+			'alias' => $alias,
 			'description' => $description,
 			'catalog_type' => $catalog_type,
 			'catalog_id' => $catalog_id,

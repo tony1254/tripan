@@ -14,6 +14,7 @@ class CreateHeaderPlantsTable extends Migration {
 		Schema::create('headerPlants', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->string('alias');
 			$table->String('description');
 			// $table->foreign('catalog_id')->references('id')->on('catalogs');
 			// $table->integer('idMenu')->index('idMenu');

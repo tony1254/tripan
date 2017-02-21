@@ -32,7 +32,7 @@ class CreateSubRodalsTable extends Migration {
 			$table->decimal('surface', 7, 2)->nullable();
 			$table->date('plantation_date')->nullable(); //fecha de importacion ingresada por update
 			$table->String('supervisor')->nullable();
-			$table->String('fores_guard')->nullable();
+			$table->String('forest_guard')->nullable();
 
 			$table->date('pruning_date')->nullable(); //fecha de poda ingresada por update
 			$table->date('raleo_date')->nullable(); //fecha de raleo ingresada por update
