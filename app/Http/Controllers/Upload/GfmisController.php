@@ -24,7 +24,7 @@ class GfmisController extends Controller {
 
 		$path = public_path() . '/uploads/GFMIS/';
 		$files = $request->file('file');
-
+		// dd("va");
 		foreach ($files as $file) {
 			$fileName = date("Y-m-d") . ".xlsx"; //$file->getClientOriginalName();
 			$file->move($path, $fileName);

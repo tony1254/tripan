@@ -116,18 +116,10 @@ var options = {
     },
 };
 
-//$("#country").easyAutocomplete(options);
+$("#country").easyAutocomplete(options);
               $( document ).ready(function() {
 
-     $('#country').autocomplete({
-    data: {
-      @foreach ($countries as $element)
 
-      "{{ $element->iso2 }} ": '{{  url("content/flags/".$element->iso2.".jpg") }}',
-      @endforeach
-    },
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-  });
 
                     $("#label_plantation_date").attr('class','active');
                     $("#label_country").attr('class','active');
