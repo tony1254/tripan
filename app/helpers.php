@@ -470,3 +470,21 @@ function inputMaxForm($value = '') {
 	return $max;
 
 }
+/**
+ * [CalculaEdad description]
+ * @param [type] $fecha [description]
+ */
+function CalculaEdad($fecha = '') {
+	// dd($fecha);
+	if ($fecha != null) {
+		list($Y, $m, $d) = explode("-", $fecha);
+		$datetime1 = new DateTime($fecha);
+		$datetime2 = new DateTime(date("Y-m-d"));
+		$interval = $datetime1->diff($datetime2);
+		return $interval->format('%Y años %m meses %d días');
+	}
+
+}
+function stateColor($value = '') {
+	return ($value) ?: 'style="display:none;"';
+}

@@ -1,10 +1,12 @@
  @section('menu') @if(Auth::check())
 <li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; test">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">test <span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TODO <span class="caret"></span></a>
     <ul class="dropdown-menu">
           <li class="{{ (findPermission(9))? : " disabled " }} ">
             <a href="{{ (findPermission(9))? url('/FormGenerator'): " # " }}">{{ findMenuName(9) }}</a>
         </li>
+        <li role="separator" class="divider"></li>
+
           <li class="{{ (findPermission(14))? : " disabled " }} ">
             <a href="{{ (findPermission(14))? url('/catalog'): " # " }}">{{ findMenuName(14) }}</a>
         </li>
@@ -16,13 +18,19 @@
           <li class="{{ (findPermission(24))? : " disabled " }} ">
             <a href="{{ (findPermission(24))? url('/title'): " # " }}">{{ findMenuName(24) }}</a>
         </li>
+        <li><a href="/fund">Fondos</a></li>
 
-        <li><a href="/inventory">inventario</a></li>
+
+        <li role="separator" class="divider"></li>
         <li><a href="/subRodal">subRodales</a></li>
+
         <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+        <li><a href="/inventory">inventario</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">One more separated link</a></li>
+        <li class="{{ (findPermission(8))? : " disabled " }} ">
+            <a href="{{ (findPermission(8))? url('/subir/GFMIS'): " # " }}">{{ findMenuName(8) }}</a>
+        </li>
+
     </ul>
 </li>
 <li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; Catalogos">
@@ -40,6 +48,8 @@
           <li class="{{ (findPermission(24))? : " disabled " }} ">
             <a href="{{ (findPermission(24))? url('/title'): " # " }}">{{ findMenuName(24) }}</a>
         </li>
+        <li><a href="/fund">Fondos</a></li>
+
     </ul>
 </li>
 <li class="dropdown tooltipped" data-position="right" data-delay="0" data-tooltip="&#x25BC; Importar">

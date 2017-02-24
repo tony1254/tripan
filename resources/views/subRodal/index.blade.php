@@ -14,6 +14,7 @@
                     </h5>
                 </div>
                 <div class="col-xs-6 text-right right">
+                    <a class="waves-effect  btn  blue darken-4 green-text text-lighten-5 btn-floating " onclick="window.location='{{ route('upload.GFMIS.index') }}'"><span class="material-icons">file_upload</span></a>
                     <button class="waves-effect  btn  green green-text text-lighten-5" onclick="window.location='{{ route('subRodal.create') }}'">@lang('buttons.create')</button>
                 </div>
             </div>
@@ -23,6 +24,7 @@
             <thead>
                 <tr>
                     <th data-field="price">No.</th>
+                    <th data-field="price">objectId</th>
                     <th data-field="id">Pais</th>
                     <th data-field="id">Fondo</th>
                     <th data-field="id">Finca</th>
@@ -38,6 +40,7 @@
 
                 <tr class="{{($subRodal->state)?:'grey'}}">
 
+                    <td>{{ $subRodal->id }}</td>
                     <td>{{ $subRodal->objectid }}</td>
                     <td>{{ $subRodal->country }}</td>
                     <td>{{ $subRodal->fund }}</td>

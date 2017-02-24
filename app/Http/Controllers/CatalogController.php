@@ -17,7 +17,7 @@ class CatalogController extends Controller {
 
 		// dd(Catalog::groupBy('catalog_subId')->get());
 		// dd(DB::select("SELECT sum(id),max(catalog_subId),name FROM `catalogs` WHERE 1 GROUP by name"));
-		$catalogs = Catalog::select(DB::raw('min(id) id,max(catalog_subId) as catalog_subId,max(name) as name'))->groupBy('catalog_subId')->paginate(30);
+		$catalogs = Catalog::select(DB::raw('min(id) id,max(catalog_subId) as catalog_subId,max(name) as name'))->groupBy('catalog_subId')->where('state', 1)->paginate(30);
 		// dd($catalogs);
 		return view('catalog.index')->with('catalogs', $catalogs)->with('subId', Catalog::all()->max('catalog_subId'));
 
@@ -105,7 +105,9 @@ class CatalogController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Catalog $catalog) {
-		Catalog::where('catalog_subId', $catalog->catalog_subId)->delete();
+
+		Catalog::where('catalog_subId', $catalog->catalog_subId)
+			->update(['state' => ($catalog->state) ? 0 : 1]);
 		return redirect()->route('catalog.index');
 
 	}

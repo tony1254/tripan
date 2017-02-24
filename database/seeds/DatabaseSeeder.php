@@ -177,6 +177,11 @@ class DatabaseSeeder extends Seeder {
 		addPermissions(1, 3);
 		addPermissions(1, 4);
 		emptyPermissions(1);
+		DB::table('funds')->insert(
+			[
+				['name' => 'Chaklum', 'description' => 'Empresa Chaklum'],
+				['name' => 'Ceibal', 'description' => 'Empresa Ceibal'],
+			]);
 		DB::table('headerPlants')->insert(
 			[
 				['alias' => 'DAP', 'name' => 'DAP', 'description' => 'Diametro a la altura del pecho', 'catalog_type' => '0', 'number' => '2', 'decimal' => '2', 'catalog_id' => '0'],

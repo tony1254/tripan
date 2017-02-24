@@ -18,6 +18,7 @@ Route::resource('HeaderPlants', 'HeaderPlantsController');
 Route::resource('title', 'TitleController');
 Route::resource('subRodal', 'SubRodalController');
 Route::resource('inventory', 'InventoryController');
+Route::resource('fund', 'FundController');
 Route::get('menu-test', 'MenuController@index');
 
 // Route::get('catalog/{table}', ['uses' => 'CatalogController@indexTable', 'as' => 'catalogo.tabla.index']);

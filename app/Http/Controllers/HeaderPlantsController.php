@@ -16,14 +16,15 @@ class HeaderPlantsController extends Controller {
 
 	// 	}
 	// }
-	public function validation(Request $request) {
-		// dd($request->all());
+	public function validation(Request $request, $value = null) {
+		// dd(($value) ? 'required|alpha_spaces|max:10|unique:headerPlants,name' . $value->id : 'required|alpha_spaces|max:10|unique:headerPlants');
 		if ($request->input('catalog_type')) {
 			// dd($request->all());
 
 			($request->input('catalog_id') != "") ?: \Alert::danger("Debe seleccionar un catalogo.");
 			return $this->validate($request, [
-				'name' => 'required|alpha_spaces|max:10' . ($request->input('_method') != "PUT") ? '' : '|unique:headerPlants',
+				'name' => ($value) ? 'required|alpha_spaces|max:10|unique:headerPlants,name,' . $value->id : 'required|alpha_spaces|max:10|unique:headerPlants',
+
 				'alias' => 'required|max:10',
 				'description' => 'required|min:5|max:30',
 				'number' => 'integer|numeric|max:4',
@@ -34,7 +35,7 @@ class HeaderPlantsController extends Controller {
 			// dd($request->all());
 
 			return $this->validate($request, [
-				'name' => 'required|alpha_spaces|max:10' . ($request->input('_method') != "PUT") ? '' : '|unique:headerPlants',
+				'name' => ($value) ? 'required|alpha_spaces|max:10|unique:headerPlants,name,' . $value->id : 'required|alpha_spaces|max:10|unique:headerPlants',
 
 				'alias' => 'required|max:10',
 				'description' => 'required|min:5|max:30',
@@ -152,7 +153,7 @@ class HeaderPlantsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, HeaderPlants $HeaderPlant) {
-		$this->validation($request);
+		$this->validation($request, $HeaderPlant);
 		$this->HeaderPlant = $HeaderPlant;
 		Schema::table('plants', function ($table) {
 

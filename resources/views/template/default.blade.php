@@ -1,7 +1,13 @@
 <div id="field_{{ $id }}"{!! Html::classes(['form-group','input-field ' ,'has-error' => $hasErrors]) !!}>
         {!! $input !!}
-    <label id="label_{{ $id }}" for="{{ $id }}" class=" ">
-        {{ $label }}
+    <label id="label_{{ $id }}" for="{{ $id }}" class="
+@if($errors)
+    red-text
+@endif
+     ">
+        {{ $label }}@if($errors)
+ <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+@endif
     </label>
 
     @if ($required)
@@ -9,7 +15,7 @@
     @endif
     <div class="row  " style=" font-size: 12px; height: 1px; ">
         @foreach ($errors as $error)
-            <div class="help-block col-xs-12" >
+            <div class="help-block col-xs-12  z-depth-2 deep-orange lighten-5" style=" z-index: 1; border-radius: 40px;  padding: 0px; padding-right: 15px;" >
                 <div class="text-right">
                     {{ $error }}
                 </div>
@@ -21,6 +27,7 @@
 @endif
 
 </div>
+
 
 <!-- 
 <?php

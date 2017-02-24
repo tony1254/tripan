@@ -36,7 +36,7 @@ class TitleTest extends FeaturesTestCase {
 		$this->see(trans('validation.attributes.save'));
 		//IF
 
-		$name = "Bloque";
+		$name = "Bloques";
 		$description = "variables de algo";
 
 		$this->type($name, 'name')

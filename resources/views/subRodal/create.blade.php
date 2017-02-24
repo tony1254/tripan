@@ -2,26 +2,22 @@
 @extends('layouts.app')
 @section('css')
 
-
+<style type="text/css">
+    .eac-item{
+         white-space: nowrap;
+    }
+</style>
 @endsection
 @section('scripts')
-<script type="text/javascript">
-
-
-
-</script>
-<script src="/bower_components/EasyAutocomplete/dist/jquery.easy-autocomplete.min.js"></script>
+    <script type="text/javascript">
+    </script>
+    <script src="/bower_components/EasyAutocomplete/dist/jquery.easy-autocomplete.min.js"></script>
 
 @endsection
 @section('content')
+
 <div class="container">
-    <div class=" col-md-10 col-md-offset-1 text-capitalize">
-        <div class="row">
-            <div class="right ">
 
-
-            </div>
-        </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading  light-green lighten-1">
@@ -39,44 +35,35 @@
 <p></p>
 
 <div class="row ">
-                <div class="col-sm-2 ">{!! Field::text('objectid',['autofocus','placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-3 ">{!! Field::text('country',['placeholder'=>"GT", 'max'=>'2','min'=>'2',"pattern"=>"[A-Za-z]{2}","title"=>'*Debe ser "codigo de Paises [ISO 3166-1 alfa-2]" Ej.: "GT" para Guatemala']) !!}</div>
-                <div class="col-sm-3">{!! Field::text('fund',['placeholder'=>"Aaaa"]) !!}</div>
-                <div class="col-sm-1">{!! Field::text('property',['placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-1">{!! Field::text('rodal',['placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-1">{!! Field::text('subRodal',['placeholder'=>"0"]) !!}</div>
+                <div class="col-sm-2 ">{!! Field::text('objectid',['autofocus','required','placeholder'=>"0"]) !!}</div>
+                <div class="col-sm-3 ">{!! Field::text('country',['required','placeholder'=>"GT", 'max'=>'2','min'=>'2',"pattern"=>"[A-Za-z]{2}","title"=>'*Debe ser "codigo de Paises [ISO 3166-1 alfa-2]" Ej.: "GT" para Guatemala']) !!}</div>
+                <div class="col-sm-3">{!! Field::text('fund',['required','placeholder'=>"Aaaa"]) !!}</div>
+                <div class="col-sm-2">{!! Field::number('property',['required','placeholder'=>"0"]) !!}</div>
+                <div class="col-sm-2">{!! Field::number('rodal',['required','placeholder'=>"0"]) !!}</div>
         </div>
         <div class="row">
+                <div class="col-sm-2">{!! Field::number('subrodal',['required','placeholder'=>"0"]) !!}</div>
                 <div class="col-sm-2">{!! Field::text('specie',['placeholder'=>"Aaaa"]) !!}</div>
-                <div class="col-sm-3">{!! Field::text('municipality',['placeholder'=>"Aaaa"]) !!}</div>
+                <div class="col-sm-2">{!! Field::text('municipality',['placeholder'=>"Aaaa"]) !!}</div>
                 <div class="col-sm-3">{!! Field::text('zona',['placeholder'=>"Aaaa"]) !!}</div>
                 <div class="col-sm-3">{!! Field::text('area',['placeholder'=>"Aaaa"]) !!}</div>
-                <div class="col-sm-2">{!! Field::text('surface',['placeholder'=>"0000"]) !!}</div>
           </div>
           <div class="row">
+                <div class="col-sm-2">{!! Field::text('surface',['required','placeholder'=>"0000 ha"]) !!}</div>
                 <div class="col-sm-3">{!! Field::text('percent_clon',['placeholder'=>"00%"]) !!}</div>
 
-                <div class="col-sm-3">{!! Field::date('plantation_date',['type'=>'date']) !!}</div>
+                <div class="col-sm-3">{!! Field::date('plantation_date',['required','type'=>'date']) !!}</div>
 
-                <div class="col-sm-1">{!! Field::text('supervisor',['placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-1">{!! Field::text('forest_guard',['placeholder'=>"0"]) !!}</div>
-                <div class="col-sm-1">{!! Field::date('roleo_date',['placeholder'=>"dd-mm-YYYY"]) !!}</div>
-                <div class="col-sm-1">{!! Field::date('pruning_date',['placeholder'=>"dd-mm-YYYY"]) !!}</div>
+                <div class="col-sm-4">{!! Field::text('supervisor',['placeholder'=>"0"]) !!}</div>
+         </div>
+          <div class="row">
+                <div class="col-sm-3">{!! Field::text('forest_guard',['placeholder'=>"0"]) !!}</div>
+                <div class="col-sm-3">{!! Field::date('raleo_date',['placeholder'=>"dd-mm-YYYY"]) !!}</div>
+                <div class="col-sm-3">{!! Field::date('pruning_date',['placeholder'=>"dd-mm-YYYY"]) !!}</div>
                 <div class="col-sm-1">{!! Field::text('pruning_density',['placeholder'=>"0"]) !!}</div>
 
             </div>
-<input id="example-mail"/>
- <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">textsms</i>
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input">Autocomplete</label>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 
                         {!! Form::button(trans('validation.attributes.save'), ['class' => 'btn teal white-text waves-effect', 'type' =>'sumbit' ]) !!}
@@ -99,15 +86,25 @@
 </script>
 @endsection
 @section('endScripts')
+
 <script type="text/javascript">
 var options = {
-    url: "\\json/countries.json",
+     data:
+     [
+       @foreach ($countries as $element)
+     {"code":"{{ $element->iso2 }}",
+        "name":"{{ $element->name }}",
+         "icon": "{{ url('content/flags/'.$element->iso2.'.jpg') }}"
+    },
+      @endforeach
+        ],
     getValue: "code",
     template: {
-        type: "description",
-        fields: {
-            description: "name"
-        }
+        type: "custom",
+        method: function(value, item) {
+            return  value+" | <i>" + item.name + "</i> | " + "<img src='" + item.icon + "' />" ;
+        },
+
     },
     list: {
         match: {
@@ -116,13 +113,60 @@ var options = {
     },
 };
 
+var options2 = {
+
+   data:
+     [
+       @foreach ($funds as $element)
+     {
+        "name":"{{ $element->name }}",
+        "description":"{{ $element->description }}",
+    },
+      @endforeach
+
+        {name: "Train", type: "ground", icon: "http://lorempixel.com/100/50/transport/6"}
+
+        ],
+
+    getValue: "name",
+        template: {
+        type: "custom",
+        method: function(value, item) {
+            return    value+ " - <i>" + item.description+"</i>";
+        },
+    /*template: {
+
+        type: "description",
+        fields: {
+            description: "description",
+            description: "icon",
+            description: "type"
+        }*/
+    },
+    list: {
+        match: {
+            enabled: true
+        }
+    },
+};
 $("#country").easyAutocomplete(options);
+
+
+$("#fund").easyAutocomplete(options2);
+
+
+
               $( document ).ready(function() {
 
 
 
-                    $("#label_plantation_date").attr('class','active');
-                    $("#label_country").attr('class','active');
+
+                    $("#label_plantation_date").attr('class',$("#label_plantation_date").attr('class')+'active');
+                    $("#label_raleo_date").attr('class',$("#label_raleo_date").attr('class')+'active');
+                    $("#label_pruning_date").attr('class',$("#label_pruning_date").attr('class')+'active');
+                    $("#label_country").attr('class',$("#label_country").attr('class')+'active');
+
+                    $("#label_fund").attr('class',$("#label_fund").attr('class')+'active');
                     $('select').material_select();
                 });
 

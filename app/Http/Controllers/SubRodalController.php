@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Fund;
 use App\SubRodal;
 use Illuminate\Http\Request;
 
 class SubRodalController extends Controller {
-	public function validation(Request $request) {
+	public function validation(Request $request, $value = null) {
+		// dd(var_dump($request->all()));
 		return $this->validate($request, [
-			'name' => 'required|max:20',
-			'description' => 'required|min:5|max:25',
+			'objectid' => ($value) ? 'required|numeric|max:20|unique:subRodals,objectid,' . $value->id : 'required|numeric|unique:subRodals',
+
+			'country' => 'required|min:2|max:2|alpha|exists:countries,iso2',
+			'fund' => 'required|min:3|exists:funds,name',
+			'property' => 'required|min:1|numeric',
+			'rodal' => 'required|min:1|numeric',
+			'subrodal' => 'required|min:1|numeric',
+			'surface' => 'required|numeric',
 
 		]);
 
@@ -34,8 +42,9 @@ class SubRodalController extends Controller {
 	 */
 	public function create() {
 		$countries = Country::all();
+		$funds = Fund::all();
 
-		return view('subRodal.create')->with('countries', $countries);
+		return view('subRodal.create')->with('countries', $countries)->with('funds', $funds);
 
 	}
 
@@ -46,7 +55,26 @@ class SubRodalController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		$this->validation($request);
+
+		$exist = SubRodal::where('country', $request->input('country'))
+			->where('fund', $request->input('fund'))
+			->where('property', $request->input('property'))
+			->where('rodal', $request->input('rodal'))
+			->where('subrodal', $request->input('subrodal'))
+			->first();
+		if (count($exist)) {
+			\Alert::success("Se encontro un subRodal igual.");
+			return redirect()->route('subRodal.show', ['subRodal' => $exist->id]);
+		}
+		$newValues = array_filter($request->toArray(), "strlen");
+		$subRodal = SubRodal::create($newValues);
+
+		$subRodal->state = true;
+		$subRodal->save();
+		// dd($request->toArray(), $newValues);
+		return redirect()->route('subRodal.show', ['subRodal' => $subRodal->id]);
+
 	}
 
 	/**
@@ -56,6 +84,7 @@ class SubRodalController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(SubRodal $subRodal) {
+		return view('subRodal.show')->with('subRodal', $subRodal);
 		//
 	}
 
@@ -66,8 +95,9 @@ class SubRodalController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(SubRodal $subRodal) {
-		return view('subRodal.edit');
-
+		$countries = Country::all();
+		$funds = Fund::all();
+		return view('subRodal.edit')->with('subRodal', $subRodal)->with('countries', $countries)->with('funds', $funds);
 	}
 
 	/**
@@ -78,7 +108,17 @@ class SubRodalController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, SubRodal $subRodal) {
-		//
+		$this->validation($request, $subRodal);
+
+		\Alert::success("Se modifico un subRodal.");
+
+		$newValues = array_filter($request->toArray(), "strlen");
+		$subRodal = SubRodal::updateOrCreate(['id' => $subRodal->id], $newValues);
+
+		$subRodal->state = true;
+		$subRodal->save();
+		// dd($request->toArray(), $newValues);
+		return redirect()->route('subRodal.show', ['subRodal' => $subRodal->id]);
 	}
 
 	/**

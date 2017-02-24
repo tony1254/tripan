@@ -67,7 +67,7 @@ class GfmisController extends Controller {
 							'surface' => $value->sup_ha,
 							'plantation_date' => $value->fecha_plantacion,
 							'supervisor' => $value->supervisor,
-							'fores_guard' => $value->guarda_forestal,
+							'forest_guard' => $value->guarda_forestal,
 							'raleo_date' => $value->fecha_ult_raleo,
 							'pruning_date' => $value->fecha_ult_poda,
 							'pruning_density' => $value->dencidad_ult_poda,

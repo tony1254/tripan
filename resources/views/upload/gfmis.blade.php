@@ -1,4 +1,4 @@
-
+@section('title')Inportar GFMIS @endsection
 @extends('upload.form')
  @section('afterUpload'){{ asset('/subir/GFMIS/create')}}@endsection
 @section('formOpen')

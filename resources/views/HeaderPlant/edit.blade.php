@@ -18,7 +18,7 @@
 
 					{!! Form::open(['action'=>['HeaderPlantsController@update',$HeaderPlant->id],'method' => 'put']) !!}
 <p></p>
-                        {!! Field::text('name',$HeaderPlant->name,[]) !!}
+                        {!! Field::text('name',$HeaderPlant->name,['autofocus']) !!}
                         {!! Field::text('alias',$HeaderPlant->alias,[]) !!}
                         {!! Field::text('description',$HeaderPlant->description,[]) !!}
                         <div class="row">

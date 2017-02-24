@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Title;
+use App\Fund;
 use Illuminate\Http\Request;
 
-class TitleController extends Controller {
-
+class FundController extends Controller {
 	public function validation(Request $request, $value = null) {
+
 		return $this->validate($request, [
-			'name' => ($value) ? 'required|max:20|unique:titles,name,' . $value->id : 'required|max:20|unique:titles',
+			'name' => ($value) ? 'required|max:20|unique:funds,name,' . $value->id : 'required|max:20|unique:funds',
 			'description' => 'required|min:5|max:25',
 
 		]);
 
 	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -22,9 +23,9 @@ class TitleController extends Controller {
 	 */
 	public function index() {
 		// dd("1");
-		$Titles = Title::paginate(30);
-		// dd($Titles);
-		return view('title.index')->with('titles', $Titles);
+		$Funds = Fund::where('state', true)->paginate(30);
+		// dd($Funds);
+		return view('fund.index')->with('funds', $Funds);
 	}
 
 	/**
@@ -33,8 +34,8 @@ class TitleController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('title.create');
-
+		return view('fund.create');
+		//
 	}
 
 	/**
@@ -45,58 +46,58 @@ class TitleController extends Controller {
 	 */
 	public function store(Request $request) {
 		$this->validation($request);
-		$title = new Title;
-		$title->name = $request->input('name');
-		$title->description = $request->input('description');
-		$title->save();
-		return redirect()->route('title.index');
+		$fund = new Fund;
+		$fund->name = $request->input('name');
+		$fund->description = $request->input('description');
+		$fund->save();
+		return redirect()->route('fund.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Title  $title
+	 * @param  \App\Fund  $fund
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Title $title) {
+	public function show(Fund $fund) {
 		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Title  $title
+	 * @param  \App\Fund  $fund
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Title $title) {
-		return view('title.edit')->with('title', $title);
-
+	public function edit(Fund $fund) {
+		return view('fund.edit')->with('fund', $fund);
+		//
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Title  $title
+	 * @param  \App\Fund  $fund
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Title $title) {
-		$this->validation($request, $title);
-		$title->name = $request->input('name');
-		$title->description = $request->input('description');
-		$title->save();
-		return redirect()->route('title.index');
+	public function update(Request $request, Fund $fund) {
+		$this->validation($request, $fund);
+		$fund->name = $request->input('name');
+		$fund->description = $request->input('description');
+		$fund->save();
+		return redirect()->route('fund.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Title  $title
+	 * @param  \App\Fund  $fund
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Title $title) {
-		$title->state = ($title->state) ? 0 : 1;
-		$title->save();
-		return redirect()->route('title.index');
+	public function destroy(Fund $fund) {
+		$fund->state = ($fund->state) ? 0 : 1;
+		$fund->save();
+		return redirect()->route('fund.index');
 	}
 }
